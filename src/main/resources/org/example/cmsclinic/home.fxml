@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="homeMenu" prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
     <children>
-        <TextField layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
+        <TextField fx:id="roleSearchBar" layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
             <padding>
                 <Insets left="15.0" />
             </padding>

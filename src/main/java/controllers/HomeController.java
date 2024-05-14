@@ -2,12 +2,15 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.chart.*;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +23,6 @@ import models.Filing.FileIO;
 import models.Users.Admin;
 import models.Users.Doctor;
 import models.Users.Patient;
-import models.Users.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +33,9 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     Admin admin = Cookie.identityAdmin;
+    private FilteredList<Admin> filteredAdmin;
+    private FilteredList<Doctor> filteredDoctor;
+    private FilteredList<Patient> filteredPatient;
 
     @FXML
     private AnchorPane homeMenu;
@@ -49,6 +54,46 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+//        if (adminTable.isVisible()) {
+//            try {
+//                filteredAdmin = new FilteredList<>(getAllAdmin(), predicate -> true);
+//                adminTable.setItems(filteredAdmin);
+//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } else if (doctorTable.isVisible()) {
+//            try {
+//                filteredDoctor = new FilteredList<>(getAllDoctor(), predicate -> true);
+//                doctorTable.setItems(filteredDoctor);
+//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        } else if (patientTable.isVisible()) {
+//            try {
+//                filteredPatient = new FilteredList<>(getAllPatient(), predicate -> true);
+//                patientTable.setItems(filteredPatient);
+//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+        try {
+            filteredAdmin = new FilteredList<>(getAllAdmin(), predicate -> true);
+            adminTable.setItems(filteredAdmin);
+            roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
+
+            filteredDoctor = new FilteredList<>(getAllDoctor(), predicate -> true);
+            doctorTable.setItems(filteredDoctor);
+
+            filteredPatient = new FilteredList<>(getAllPatient(), predicate -> true);
+            patientTable.setItems(filteredPatient);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
     }
 
     @FXML
@@ -73,6 +118,90 @@ public class HomeController implements Initializable {
         adminTable.setVisible(false);
         doctorTable.setVisible(false);
         patientTable.setVisible(true);
+    }
+
+    @FXML
+    private TextField roleSearchBar;
+    public void searchRoles(String input) {
+        String keyword = input.toLowerCase();
+        if (adminTable.isVisible()) {
+            filteredAdmin.setPredicate(data -> {
+                if (input.isEmpty() || input.isBlank() || input == null) {
+                    return true;
+                }
+
+                if (data.getID().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getUsername().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getPassword().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getDateOfBirth().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getGender().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getSalary().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            SortedList<Admin> sortedData = new SortedList<>(filteredAdmin);
+            sortedData.comparatorProperty().bind(adminTable.comparatorProperty());
+            adminTable.setItems(sortedData);
+
+        } else if (doctorTable.isVisible()) {
+            filteredDoctor.setPredicate(data -> {
+                if (input.isEmpty() || input.isBlank() || input == null) {
+                    return true;
+                }
+
+                if (data.getID().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getUsername().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getPassword().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getDateOfBirth().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getGender().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getSpecialization().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            SortedList<Doctor> sortedData = new SortedList<>(filteredDoctor);
+            sortedData.comparatorProperty().bind(doctorTable.comparatorProperty());
+            doctorTable.setItems(sortedData);
+
+        } else if (patientTable.isVisible()) {
+            filteredPatient.setPredicate(data -> {
+                if (input.isEmpty() || input.isBlank() || input == null) {
+                    return true;
+                }
+
+                if (data.getID().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getUsername().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getPassword().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getDateOfBirth().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getGender().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else if (data.getMedicalCase().toLowerCase().indexOf(keyword) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            SortedList<Patient> sortedData = new SortedList<>(filteredPatient);
+            sortedData.comparatorProperty().bind(patientTable.comparatorProperty());
+            patientTable.setItems(sortedData);
+        }
     }
 
     @FXML
