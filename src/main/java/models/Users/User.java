@@ -56,8 +56,8 @@ public class User {
                     System.out.println("Account found.");
                     return switch (role) {
                         case "admin" -> new Admin(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
-                        case "doctor" -> new Doctor(row[0], row[1], row[2], row[3], row[4], row[5], "surgery");
-                        case "patient" -> new Patient(row[0], row[1], row[2], row[3], row[4], row[5], "diabetes");
+                        case "doctor" -> new Doctor(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
+                        case "patient" -> new Patient(row[0], row[1], row[2], row[3], row[4], row[5], row[6]);
                         default -> new User(row[0], row[1], row[2], row[3], row[4], row[5]);
                     };
                 }

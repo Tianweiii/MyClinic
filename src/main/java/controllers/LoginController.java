@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
@@ -18,7 +19,6 @@ import models.Users.Doctor;
 import models.Users.Patient;
 import models.Users.User;
 import models.Auth.Cookie;
-import org.example.cmsclinic.MainApplication;
 
 public class LoginController implements Initializable {
     Admin admin = null;
@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
     public void login() throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String role = comboBox.getValue();
+        String role = comboBox.getValue().toLowerCase();
         User user = User.loginAccount(username, password, role);
 
         if (user != null) {
@@ -57,16 +57,25 @@ public class LoginController implements Initializable {
                 Cookie.setCookie(p);
                 patient = Cookie.identityPatient;
             }
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful login");
             alert.setContentText("You are now logged in!");
             alert.showAndWait();
 
-            Parent parent = FXMLLoader.load(getClass().getResource("/org/example/cmsclinic/adminMain.fxml"));
+            String path = switch (role) {
+                case "admin" -> "/org/example/cmsclinic/adminMain.fxml";
+                case "doctor" -> "";
+                case "patient" -> "";
+                default -> null;
+            };
+
+            Parent parent = FXMLLoader.load(getClass().getResource(path));
             Scene scene = new Scene(parent);
             Stage stage = (Stage) usernameField.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login Error");
