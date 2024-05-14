@@ -1,1 +1,3 @@
-DT1, Ricky, 123, 04/06/96, male, doctor
+DT1, Ricky, 123, 04/06/96, male, doctor, surgery
+DT2, Adam, 456, 16/01/86, male, doctor, neurology
+DT3, Jenny, 789, 25/12/70, female, doctor, pediatrics

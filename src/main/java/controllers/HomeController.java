@@ -4,25 +4,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.chart.*;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+
 import models.Auth.Cookie;
 import models.Datas.Appointment;
+import models.Datas.Payment;
 import models.Filing.FileIO;
 import models.Users.Admin;
+import models.Users.Doctor;
+import models.Users.Patient;
+import models.Users.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -30,8 +34,47 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane homeMenu;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        addAdminToTable();
+        addDoctorToTable();
+        addPatientToTable();
+
+        addUserChartData();
+        try {
+            getCurrentMonthRevenue();
+            addMonthlyRevenueChart();
+            getDailyAppointmentCount();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @FXML
-    private Text monthlyRevenueTotal;
+    private Button showAdminButton;
+    @FXML
+    private Button showDoctorButton;
+    @FXML
+    private Button showPatientButton;
+    public void showAdminTable() {
+        adminTable.setVisible(true);
+        doctorTable.setVisible(false);
+        patientTable.setVisible(false);
+    }
+
+    public void showDoctorTable() {
+        adminTable.setVisible(false);
+        doctorTable.setVisible(true);
+        patientTable.setVisible(false);
+    }
+
+    public void showPatientTable() {
+        adminTable.setVisible(false);
+        doctorTable.setVisible(false);
+        patientTable.setVisible(true);
+    }
+
     @FXML
     private TableView<Admin> adminTable;
     @FXML
@@ -48,13 +91,18 @@ public class HomeController implements Initializable {
     private TableColumn<Admin, String> adminSalary;
     @FXML
     private TableColumn<Admin, String> adminUsername;
-    @FXML
-    private BarChart<String, Number> totalUserChart;
-    @FXML
-    private Text dailyAppointments;
+    ObservableList<Admin> getAllAdmin() throws IOException {
+        ObservableList<Admin> admins = FXCollections.observableArrayList();
+        FileIO reader = new FileIO("r", "admin");
+        for (String row : reader.readFile()) {
+            String[] data = row.split(",\\s");
+            Admin ad = new Admin(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+            admins.add(ad);
+        }
+        return admins;
+    }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void addAdminToTable() {
         adminId.setCellValueFactory(new PropertyValueFactory<>("ID"));
         adminUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         adminPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -67,37 +115,116 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
-        addUserChartData();
+    @FXML
+    private TableView<Doctor> doctorTable;
+    @FXML
+    private TableColumn<Doctor, String> doctorDOB;
+    @FXML
+    private TableColumn<Doctor, String> doctorGender;
+    @FXML
+    private TableColumn<Doctor, String> doctorId;
+    @FXML
+    private TableColumn<Doctor, String> doctorPassword;
+    @FXML
+    private TableColumn<Doctor, String> doctorRole;
+    @FXML
+    private TableColumn<Doctor, String> doctorSpecialization;
+    @FXML
+    private TableColumn<Doctor, String> doctorUsername;
+    ObservableList<Doctor> getAllDoctor() throws IOException {
+        ObservableList<Doctor> doctors = FXCollections.observableArrayList();
+        FileIO reader = new FileIO("r", "doctor");
+        for (String row : reader.readFile()) {
+            String[] data = row.split(",\\s");
+            Doctor dt = new Doctor(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+            doctors.add(dt);
+        }
+        return doctors;
+    }
+
+    public void addDoctorToTable() {
+        doctorId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        doctorUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        doctorPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        doctorDOB.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        doctorGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        doctorRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        doctorSpecialization.setCellValueFactory(new PropertyValueFactory<>("specialization"));
         try {
-            getCurrentMonthRevenue();
-            getDailyAppointmentCount();
+            doctorTable.setItems(getAllDoctor());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    ObservableList<Admin> getAllAdmin() throws IOException {
-        ObservableList<Admin> admins = FXCollections.observableArrayList();
-        FileIO reader = new FileIO("r", "admin");
+    @FXML
+    private TableView<Patient> patientTable;
+    @FXML
+    private TableColumn<Patient, String> patientDOB;
+    @FXML
+    private TableColumn<Patient, String> patientGender;
+    @FXML
+    private TableColumn<Patient, String> patientId;
+    @FXML
+    private TableColumn<Patient, String> patientMedicalCase;
+    @FXML
+    private TableColumn<Patient, String> patientPassword;
+    @FXML
+    private TableColumn<Patient, String> patientRole;
+    @FXML
+    private TableColumn<Patient, String> patientUsername;
+    ObservableList<Patient> getAllPatient() throws IOException {
+        ObservableList<Patient> patients = FXCollections.observableArrayList();
+        FileIO reader = new FileIO("r", "patient");
         for (String row : reader.readFile()) {
             String[] data = row.split(",\\s");
-            Admin ad = new Admin(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
-            admins.add(ad);
+            Patient pt = new Patient(data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
+            patients.add(pt);
         }
-        return admins;
+        return patients;
     }
 
-    public void clickTableRow(MouseEvent e) {
+    public void addPatientToTable() {
+        patientId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        patientUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        patientPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        patientDOB.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        patientGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        patientRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        patientMedicalCase.setCellValueFactory(new PropertyValueFactory<>("medicalCase"));
+        try {
+            patientTable.setItems(getAllPatient());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clickAdminTableRow(MouseEvent e) {
         if (e.getClickCount() == 1 && !adminTable.getSelectionModel().isEmpty()) {
             Admin selectedItem = adminTable.getSelectionModel().getSelectedItem();
-
             String data = selectedItem.toString();
-
+            System.out.println(data);
+        }
+    }
+    public void clickDoctorTableRow(MouseEvent e) {
+        if (e.getClickCount() == 1 && !doctorTable.getSelectionModel().isEmpty()) {
+            Doctor selectedItem = doctorTable.getSelectionModel().getSelectedItem();
+            String data = selectedItem.toString();
+            System.out.println(data);
+        }
+    }
+    public void clickPatientTableRow(MouseEvent e) {
+        if (e.getClickCount() == 1 && !patientTable.getSelectionModel().isEmpty()) {
+            Patient selectedItem = patientTable.getSelectionModel().getSelectedItem();
+            String data = selectedItem.toString();
             System.out.println(data);
         }
     }
 
+    @FXML
+    private BarChart<String, Number> totalUserChart;
     public void addUserChartData() {
         Number adminCount;
         Number doctorCount;
@@ -126,8 +253,20 @@ public class HomeController implements Initializable {
         totalUserChart.getData().add(series);
     }
 
-    public void addMonthlyRevenueChart() {
+    @FXML
+    private LineChart<String, Number> monthlyRevenueChart;
+    public void addMonthlyRevenueChart() throws IOException {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Revenue");
 
+        Map<String, Number> data = Payment.getMonthlyRevenue();
+        series.getData().add(new XYChart.Data<>("Jan", data.get("Jan")));
+        series.getData().add(new XYChart.Data<>("Feb", data.get("Feb")));
+        series.getData().add(new XYChart.Data<>("Mar", data.get("Mar")));
+        series.getData().add(new XYChart.Data<>("Apr", data.get("Apr")));
+        series.getData().add(new XYChart.Data<>("May", data.get("May")));
+
+        monthlyRevenueChart.getData().add(series);
     }
 
     public void setMonthlyRevenue() {
@@ -138,6 +277,8 @@ public class HomeController implements Initializable {
 
     }
 
+    @FXML
+    private Text dailyAppointments;
     public void getDailyAppointmentCount() throws IOException {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
@@ -148,6 +289,8 @@ public class HomeController implements Initializable {
         dailyAppointments.setText(String.valueOf(number) + " appointments");
     }
 
+    @FXML
+    private Text monthlyRevenueTotal;
     public void getCurrentMonthRevenue() throws IOException {
         int total = 0;
         Date date = new Date();

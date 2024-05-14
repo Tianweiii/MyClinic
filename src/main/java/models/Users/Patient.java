@@ -16,6 +16,15 @@ public class Patient extends User {
         this.medicalCase = medicalCase;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + ", " + medicalCase;
+    }
+
+    public String getMedicalCase() {
+        return medicalCase;
+    }
+
     public static String[] getPatientId() throws IOException {
         ArrayList<String> data = new ArrayList<>();
         FileIO reader = new FileIO("r", "patient");

@@ -53,6 +53,10 @@ public class Admin extends User {
         System.out.println("Successfully Registered Account!");
     }
 
+    public void manageUser(String userID, String role) {
+
+    }
+
     public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");

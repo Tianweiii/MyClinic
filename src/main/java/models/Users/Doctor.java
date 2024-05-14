@@ -7,4 +7,13 @@ public class Doctor extends User {
         super(ID, username, password, dateOfBirth, gender, role);
         this.specialization = specialization;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", " + specialization;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
 }

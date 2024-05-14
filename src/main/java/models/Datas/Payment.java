@@ -85,10 +85,31 @@ public class Payment {
         return paymentList;
     }
 
-    public List<Map<String, String>> getMonthlyRevenue() {
-        List<Map<String, String>> monthlyRevenue = new ArrayList<>();
+    public static Map<String, Number> getMonthlyRevenue() throws IOException {
+        Map<String, Number> data = new HashMap<>();
+        int jan = 0;
+        int feb = 0;
+        int mar = 0;
+        int apr = 0;
+        int may = 0;
+        List<Map<String, Integer>> monthlyRevenue = new ArrayList<>();
         FileIO reader = new FileIO("r", "payment");
-
-        return monthlyRevenue;
+        for (String row : reader.readFile()) {
+            String[] rowData = row.split(",\\s");
+            int amount = Integer.parseInt(rowData[3]);
+            switch (rowData[5].split("/")[1]) {
+                case "01" -> jan += amount;
+                case "02" -> feb += amount;
+                case "03" -> mar += amount;
+                case "04" -> apr += amount;
+                case "05" -> may += amount;
+            }
+        }
+        data.put("Jan", jan);
+        data.put("Feb", feb);
+        data.put("Mar", mar);
+        data.put("Apr", apr);
+        data.put("May", may);
+        return data;
     }
 }
