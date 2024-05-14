@@ -58,6 +58,15 @@
                                </ImageView>
                            </graphic>
                        </Button>
+                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#pressLogOutButton" prefHeight="43.0" prefWidth="187.0" styleClass="nav-btn" stylesheets="@../../../css/adminMain.css" text="Log Out">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/icons/logout.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                    </children>
                    <padding>
                        <Insets top="50.0" />

@@ -51,38 +51,8 @@ public class HomeController implements Initializable {
             getCurrentMonthRevenue();
             addMonthlyRevenueChart();
             getDailyAppointmentCount();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-//        if (adminTable.isVisible()) {
-//            try {
-//                filteredAdmin = new FilteredList<>(getAllAdmin(), predicate -> true);
-//                adminTable.setItems(filteredAdmin);
-//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } else if (doctorTable.isVisible()) {
-//            try {
-//                filteredDoctor = new FilteredList<>(getAllDoctor(), predicate -> true);
-//                doctorTable.setItems(filteredDoctor);
-//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        } else if (patientTable.isVisible()) {
-//            try {
-//                filteredPatient = new FilteredList<>(getAllPatient(), predicate -> true);
-//                patientTable.setItems(filteredPatient);
-//                roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-        try {
             filteredAdmin = new FilteredList<>(getAllAdmin(), predicate -> true);
             adminTable.setItems(filteredAdmin);
-            roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
 
             filteredDoctor = new FilteredList<>(getAllDoctor(), predicate -> true);
             doctorTable.setItems(filteredDoctor);
@@ -92,7 +62,6 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         roleSearchBar.textProperty().addListener((observable, oldValue, newValue) -> searchRoles(newValue));
     }
 
@@ -396,14 +365,6 @@ public class HomeController implements Initializable {
         series.getData().add(new XYChart.Data<>("May", data.get("May")));
 
         monthlyRevenueChart.getData().add(series);
-    }
-
-    public void setMonthlyRevenue() {
-
-    }
-
-    public void clickAdminButton() {
-
     }
 
     @FXML
