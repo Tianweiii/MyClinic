@@ -1,0 +1,14 @@
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-alignment:CENTER-LEFT;
+}
+
+.nav-btn:hover{
+    -fx-opacity:0.7;
+}
+
+.default-color0.chart-bar{
+    -fx-bar-fill: #8338ec;
+}

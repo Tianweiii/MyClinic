@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<AnchorPane fx:id="homeMenu" prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.HomeController">
+    <children>
+        <TextField layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
+            <padding>
+                <Insets left="15.0" />
+            </padding>
+        </TextField>
+        <TableView fx:id="adminTable" layoutX="53.0" layoutY="82.0" onMouseClicked="#clickTableRow" prefHeight="200.0" prefWidth="750.0">
+            <columns>
+                <TableColumn fx:id="adminId" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="adminUsername" prefWidth="137.69100952148438" text="Username" />
+                <TableColumn fx:id="adminPassword" minWidth="0.0" prefWidth="130.48263549804688" text="Password" />
+                <TableColumn fx:id="adminDOB" prefWidth="116.63275146484375" text="D.O.B" />
+                <TableColumn fx:id="adminGender" prefWidth="97.64593505859375" text="Gender" />
+                <TableColumn fx:id="adminRole" prefWidth="75.806396484375" text="Role" />
+                <TableColumn fx:id="adminSalary" prefWidth="89.9193115234375" text="Salary" />
+            </columns>
+        </TableView>
+        <ButtonBar layoutX="529.0" layoutY="28.0" prefHeight="43.0" prefWidth="274.0">
+            <buttons>
+                <Button alignment="CENTER" minWidth="33.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/admin.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" prefHeight="42.0" style="-fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/doctor.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button minWidth="58.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" style="-fx-cursor: hand;">
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/medical.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </buttons>
+        </ButtonBar>
+        <VBox layoutX="53.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
+            <children>
+                <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
+                    <children>
+                        <Text fill="WHITE" layoutX="52.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments Today" textAlignment="CENTER" wrappingWidth="166.04598999023438">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="15.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="12.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/time.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER" prefHeight="118.0" prefWidth="228.0" style="-fx-background-color: white;">
+                    <children>
+                        <Text fx:id="dailyAppointments" strokeType="OUTSIDE" strokeWidth="0.0" text="2 Appointments">
+                            <font>
+                                <Font name="Geneva" size="22.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox layoutX="313.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
+            <children>
+                <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
+                    <children>
+                        <Text fill="WHITE" layoutX="51.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Registrations" textAlignment="CENTER" wrappingWidth="166.04598999023438">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="15.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="21.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/new.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER" prefHeight="118.0" prefWidth="228.0" style="-fx-background-color: white;">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5 new users">
+                            <font>
+                                <Font name="Geneva" size="22.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox layoutX="575.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
+            <children>
+                <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
+                    <children>
+                        <Text fill="WHITE" layoutX="47.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Month Revenue " textAlignment="CENTER" wrappingWidth="166.04598999023438">
+                            <font>
+                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                            </font>
+                        </Text>
+                        <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../images/icons/growth.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER" prefHeight="118.0" prefWidth="228.0" style="-fx-background-color: white;">
+                    <children>
+                        <Text fx:id="monthlyRevenueTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="RM 2500">
+                            <font>
+                                <Font name="Geneva" size="26.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <LineChart layoutX="452.0" layoutY="491.0" prefHeight="250.0" prefWidth="351.0" style="-fx-background-color: white;" title="Monthly Revenue">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <BarChart fx:id="totalUserChart" layoutX="53.0" layoutY="491.0" prefHeight="250.0" prefWidth="351.0" style="-fx-background-color: white;" stylesheets="@../../../css/adminMain.css" title="Total Users">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </BarChart>
+    </children>
+</AnchorPane>
