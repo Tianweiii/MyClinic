@@ -22,6 +22,15 @@
                                </ImageView>
                            </graphic>
                        </Button>
+                  <Button fx:id="manageUserButton" mnemonicParsing="false" onAction="#pressManageUserButton" prefHeight="43.0" prefWidth="187.0" styleClass="nav-btn" stylesheets="@../../../css/adminMain.css" text="Manage Users">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/icons/register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                        <Button fx:id="walkInButton" mnemonicParsing="false" onAction="#pressWalkInButton" prefHeight="43.0" prefWidth="187.0" styleClass="nav-btn" stylesheets="@../../../css/adminMain.css" text="Walk-In Appointment">
                            <graphic>
                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -62,7 +71,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../images/icons/logout.png" />
+                              <Image url="@../../../images/icons/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -78,6 +87,11 @@
          <children>
              <fx:include source="home.fxml" />
          </children>
+      </AnchorPane>
+      <AnchorPane fx:id="manageUserPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0">
+          <children>
+              <fx:include source="manageUser.fxml" />
+          </children>
       </AnchorPane>
       <AnchorPane fx:id="walkInPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
           <children>

@@ -34,6 +34,8 @@ public class AdminController {
     @FXML
     private AnchorPane homePage;
     @FXML
+    private AnchorPane manageUserPage;
+    @FXML
     private AnchorPane walkInPage;
     @FXML
     private AnchorPane trackAppointmentPage;
@@ -44,6 +46,16 @@ public class AdminController {
 
     public void pressHomeButton() {
         homePage.setVisible(true);
+        manageUserPage.setVisible(false);
+        walkInPage.setVisible(false);
+        trackAppointmentPage.setVisible(false);
+        trackMedReportPage.setVisible(false);
+        paymentPage.setVisible(false);
+    }
+
+    public void pressManageUserButton() {
+        homePage.setVisible(false);
+        manageUserPage.setVisible(true);
         walkInPage.setVisible(false);
         trackAppointmentPage.setVisible(false);
         trackMedReportPage.setVisible(false);
@@ -52,6 +64,7 @@ public class AdminController {
 
     public void pressWalkInButton() {
         homePage.setVisible(false);
+        manageUserPage.setVisible(false);
         walkInPage.setVisible(true);
         trackAppointmentPage.setVisible(false);
         trackMedReportPage.setVisible(false);
@@ -60,6 +73,7 @@ public class AdminController {
 
     public void pressTrackAptButton() {
         homePage.setVisible(false);
+        manageUserPage.setVisible(false);
         walkInPage.setVisible(false);
         trackAppointmentPage.setVisible(true);
         trackMedReportPage.setVisible(false);
@@ -68,6 +82,7 @@ public class AdminController {
 
     public void pressTrackMedRepButton() {
         homePage.setVisible(false);
+        manageUserPage.setVisible(false);
         walkInPage.setVisible(false);
         trackAppointmentPage.setVisible(false);
         trackMedReportPage.setVisible(true);
@@ -76,6 +91,7 @@ public class AdminController {
 
     public void pressPaymentButton() {
         homePage.setVisible(false);
+        manageUserPage.setVisible(false);
         walkInPage.setVisible(false);
         trackAppointmentPage.setVisible(false);
         trackMedReportPage.setVisible(false);

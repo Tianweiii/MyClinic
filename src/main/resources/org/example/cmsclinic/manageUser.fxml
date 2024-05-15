@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageUserController">
+    <children>
+        <Text layoutX="415.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage User Menu" />
+    </children>
+</AnchorPane>
