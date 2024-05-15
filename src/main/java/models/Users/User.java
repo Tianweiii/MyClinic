@@ -40,7 +40,7 @@ public class User {
     public String LocalDateToDob(LocalDate date) {
         String data = date.toString();
         String[] arr = data.split("-");
-        return MessageFormat.format("{0}/{1}/{2}", arr[0], arr[1], arr[2]);
+        return MessageFormat.format("{0}/{1}/{2}", arr[2], arr[1], arr[0]);
     }
 
     public String getGender() {

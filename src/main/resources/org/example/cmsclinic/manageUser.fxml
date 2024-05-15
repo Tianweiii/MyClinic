@@ -161,11 +161,12 @@
             <Text layoutX="364.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" />
          </children>
       </AnchorPane>
-      <ButtonBar layoutX="540.0" layoutY="691.0" prefHeight="51.0" prefWidth="263.0">
+      <ButtonBar layoutX="469.0" layoutY="691.0" prefHeight="51.0" prefWidth="334.0">
         <buttons>
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="40.0" style="-fx-background-color: #2279e3; -fx-text-fill: white;" text="Reset" />
           <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #d2222d; -fx-text-fill: white;" text="Delete" />
             <Button fx:id="updateButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #ffbf00;" text="Update" />
-            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #238823; -fx-text-fill: white;" text="Add" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addUser" prefHeight="40.0" style="-fx-background-color: #238823; -fx-text-fill: white;" text="Add" />
         </buttons>
       </ButtonBar>
    </children>

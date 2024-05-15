@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import models.Auth.Cookie;
+import models.Auth.Verification;
 import models.Filing.FileIO;
 import models.Users.Admin;
 
@@ -19,8 +21,18 @@ import java.util.ResourceBundle;
 
 public class ManageUserController implements Initializable {
 
+    Admin admin = Cookie.identityAdmin;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        adminId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        adminUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        adminPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        adminDOB.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        adminGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        adminRole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        adminSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+
         addAdminToTable();
         setAdminIdField();
         setAdminGenderComboBox();
@@ -86,13 +98,6 @@ public class ManageUserController implements Initializable {
         return admins;
     }
     public void addAdminToTable() {
-        adminId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        adminUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        adminPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
-        adminDOB.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        adminGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        adminRole.setCellValueFactory(new PropertyValueFactory<>("role"));
-        adminSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         try {
             adminTable.setItems(getAllAdmin());
         } catch (IOException e) {
@@ -110,6 +115,8 @@ public class ManageUserController implements Initializable {
     private DatePicker adminDobField;
     @FXML
     private ComboBox<String> adminGenderComboBox;
+    @FXML
+    private Text adminRoleField;
     @FXML
     private TextField adminSalaryTextField;
     public void clickAdminTableRow(MouseEvent e) {
@@ -145,8 +152,54 @@ public class ManageUserController implements Initializable {
     private Button updateButton;
     @FXML
     private Button deleteButton;
-    public void addUser() {
+    @FXML
+    private Button resetButton;
+    public void verifyEmptyField() {
 
+    }
+    public void addUser() throws IOException {
+        if (adminView.isVisible()) {
+            String id = adminIdField.getText();
+            String username = adminUsernameTextField.getText();
+            String password = adminPasswordTextField.getText();
+            String dob = admin.LocalDateToDob(adminDobField.getValue());
+            String gender = adminGenderComboBox.getValue();
+            String role = adminRoleField.getText().toLowerCase();
+            String salary = adminSalaryTextField.getText();
+            if (!Verification.verifyUsername(username, "admin")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Register user error");
+                alert.setContentText("Username already exists. Please use another username");
+                alert.showAndWait();
+                return;
+            }
+            admin.registerAccount(id, username, password, dob, gender, role, salary);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful registration");
+            alert.setContentText("User has been successfully registered!");
+            alert.showAndWait();
+            addAdminToTable();
+            resetFields();
+        } else if (doctorView.isVisible()) {
+
+        } else if (patientView.isVisible()) {
+
+        }
+    }
+    public void resetFields() {
+        if (adminView.isVisible()) {
+            adminTable.getSelectionModel().clearSelection();
+            setAdminIdField();
+            adminUsernameTextField.setText("");
+            adminPasswordTextField.setText("");
+            adminDobField.setValue(null);
+            adminGenderComboBox.setValue(null);
+            adminSalaryTextField.setText("");
+        } else if (doctorView.isVisible()) {
+
+        } else if (patientView.isVisible()) {
+
+        }
     }
 }
 

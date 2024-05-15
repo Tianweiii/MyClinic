@@ -28,26 +28,17 @@ public class Admin extends User {
         return salary;
     }
 
-    public boolean registerAccount(String id, String username, String password, String DOB, String gender, String role) {
-        role = role.toLowerCase();
-        try {
-            if (!Verification.verifyUsername(username, role)) {
-                return false;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+    public boolean registerAccount(String id, String username, String password, String DOB, String gender, String role, String special) {
         if (role.equals("admin")) {
-            String data = MessageFormat.format("AD{0}, {1}, {2}, {3}, {4}, {5}, 2000\n", id, username, password, DOB, gender, role);
+            String data = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "admin");
             writer.appendFile(data);
         } else if (role.equals("doctor")) {
-            String data = MessageFormat.format("DT{0}, {1}, {2}, {3}, {4}, {5}\n", id, username, password, DOB, gender, role);
+            String data = MessageFormat.format("DT{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "doctor");
             writer.appendFile(data);
         } else {
-            String data = MessageFormat.format("PT{0}, {1}, {2}, {3}, {4}, {5}\n", id, username, password, DOB, gender, role);
+            String data = MessageFormat.format("PT{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "patient");
             writer.appendFile(data);
         }

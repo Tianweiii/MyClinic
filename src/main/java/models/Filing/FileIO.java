@@ -12,7 +12,7 @@ public class FileIO {
     public FileIO(String type, String filename) {
         if (type.equalsIgnoreCase("a")) {
             try {
-                appender = new BufferedWriter(new FileWriter("src/main/java/model/TextFiles/" + filename, true));
+                appender = new BufferedWriter(new FileWriter("src/main/java/models/TextFiles/" + filename, true));
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
@@ -26,7 +26,7 @@ public class FileIO {
             }
         } else if (type.equalsIgnoreCase("w")) {
             try {
-                writer = new BufferedWriter(new FileWriter("src/main/java/model/TextFiles/" + filename));
+                writer = new BufferedWriter(new FileWriter("src/main/java/models/TextFiles/" + filename));
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
