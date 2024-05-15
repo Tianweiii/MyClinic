@@ -371,7 +371,7 @@ public class HomeController implements Initializable {
     private Text dailyAppointments;
     public void getDailyAppointmentCount() throws IOException {
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
         int number = Appointment.findAppointment(currentDate).toArray().length;

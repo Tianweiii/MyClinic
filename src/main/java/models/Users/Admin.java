@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import models.Auth.Verification;
 import models.Datas.MedicalRecord;
 import models.Datas.Payment;
 import models.Filing.FileIO;
@@ -27,11 +28,12 @@ public class Admin extends User {
         return salary;
     }
 
-    public void registerAccount(String username, String password, String DOB, String gender, String role) {
-        int id;
-        FileIO reader = new FileIO("r", role);
+    public boolean registerAccount(String id, String username, String password, String DOB, String gender, String role) {
+        role = role.toLowerCase();
         try {
-            id = (reader.countRowNum() + 1);
+            if (!Verification.verifyUsername(username, role)) {
+                return false;
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -51,6 +53,7 @@ public class Admin extends User {
         }
 
         System.out.println("Successfully Registered Account!");
+        return true;
     }
 
     public void manageUser(String userID, String role) {
@@ -59,7 +62,7 @@ public class Admin extends User {
 
     public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) {
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
         String id = Appointment.getNewAppointmentId();
@@ -95,7 +98,7 @@ public class Admin extends User {
 
     public ArrayList<Appointment> trackDailyAppointment() throws IOException {
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
         return Appointment.findAppointment(currentDate);
@@ -105,7 +108,7 @@ public class Admin extends User {
         String id = Payment.getNewPaymentId();
 
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
         Payment data = new Payment(id, PatientID, AppointmentID, amount, status, currentDate);

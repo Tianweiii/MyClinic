@@ -83,7 +83,7 @@
                </VBox>
            </children>
        </AnchorPane>
-      <AnchorPane fx:id="homePage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="homePage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
              <fx:include source="home.fxml" />
          </children>

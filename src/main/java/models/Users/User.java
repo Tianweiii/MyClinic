@@ -2,6 +2,7 @@ package models.Users;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import models.Filing.FileIO;
@@ -28,6 +29,18 @@ public class User {
 
     public String getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public LocalDate dobToLocaldate() {
+        String[] arr = getDateOfBirth().split("/");
+        String date = MessageFormat.format("{0}-{1}-{2}", arr[2], arr[1], arr[0]);
+        return LocalDate.parse(date);
+    }
+
+    public String LocalDateToDob(LocalDate date) {
+        String data = date.toString();
+        String[] arr = data.split("-");
+        return MessageFormat.format("{0}/{1}/{2}", arr[0], arr[1], arr[2]);
     }
 
     public String getGender() {

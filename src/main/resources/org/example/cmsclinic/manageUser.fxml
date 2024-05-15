@@ -1,10 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageUserController">
-    <children>
-        <Text layoutX="415.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage User Menu" />
-    </children>
+   <children>
+       <TextField fx:id="roleSearchBar" layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
+           <padding>
+               <Insets left="15.0" />
+           </padding>
+       </TextField>
+       <ButtonBar layoutX="529.0" layoutY="28.0" prefHeight="43.0" prefWidth="274.0">
+           <buttons>
+               <Button fx:id="showAdminButton" alignment="CENTER" minWidth="33.0" mnemonicParsing="false" onAction="#showAdminView" prefHeight="30.0" prefWidth="100.0" style="-fx-cursor: hand;">
+                   <graphic>
+                       <ImageView fitHeight="37.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@../../../images/icons/admin.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Button fx:id="showDoctorButton" mnemonicParsing="false" onAction="#showDoctorView" prefHeight="42.0" style="-fx-cursor: hand;">
+                   <graphic>
+                       <ImageView fitHeight="54.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@../../../images/icons/doctor.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+               <Button fx:id="showPatientButton" minWidth="58.0" mnemonicParsing="false" onAction="#showPatientView" prefHeight="48.0" prefWidth="100.0" style="-fx-cursor: hand;">
+                   <graphic>
+                       <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                               <Image url="@../../../images/icons/medical.png" />
+                           </image>
+                       </ImageView>
+                   </graphic>
+               </Button>
+           </buttons>
+       </ButtonBar>
+      <AnchorPane fx:id="adminView" layoutY="90.0" prefHeight="594.0" prefWidth="854.0">
+         <children>
+            <Text layoutX="58.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin View">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="24.0" />
+               </font>
+            </Text>
+             <TableView fx:id="adminTable" layoutX="53.0" layoutY="74.0" onMouseClicked="#clickAdminTableRow" prefHeight="200.0" prefWidth="750.0">
+                 <columns>
+                     <TableColumn fx:id="adminId" prefWidth="75.0" text="ID" />
+                     <TableColumn fx:id="adminUsername" prefWidth="137.69100952148438" text="Username" />
+                     <TableColumn fx:id="adminPassword" minWidth="0.0" prefWidth="130.48263549804688" text="Password" />
+                     <TableColumn fx:id="adminDOB" prefWidth="116.63275146484375" text="D.O.B" />
+                     <TableColumn fx:id="adminGender" prefWidth="97.64593505859375" text="Gender" />
+                     <TableColumn fx:id="adminRole" prefWidth="75.806396484375" text="Role" />
+                     <TableColumn fx:id="adminSalary" prefWidth="114.5" text="Salary" />
+                 </columns>
+             </TableView>
+            <HBox alignment="CENTER" layoutX="65.0" layoutY="304.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="adminIdField" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="53.0" layoutY="372.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="adminUsernameTextField" prefHeight="38.0" prefWidth="160.0" promptText="Username" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="54.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="adminPasswordTextField" prefHeight="38.0" prefWidth="160.0" promptText="Password" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="48.0" layoutY="512.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="adminDobField" prefHeight="38.0" prefWidth="171.0" promptText="Pick Date" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="414.0" layoutY="304.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="adminGenderComboBox" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="407.0" layoutY="372.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Role:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="adminRoleField" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="423.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Salary:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="adminSalaryTextField" prefHeight="38.0" prefWidth="160.0" promptText="Salary" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="doctorView" layoutY="90.0" prefHeight="594.0" prefWidth="854.0" visible="false">
+         <children>
+            <Text layoutX="364.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="patientView" layoutY="90.0" prefHeight="594.0" prefWidth="854.0" visible="false">
+         <children>
+            <Text layoutX="364.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" />
+         </children>
+      </AnchorPane>
+      <ButtonBar layoutX="540.0" layoutY="691.0" prefHeight="51.0" prefWidth="263.0">
+        <buttons>
+          <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #d2222d; -fx-text-fill: white;" text="Delete" />
+            <Button fx:id="updateButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #ffbf00;" text="Update" />
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="40.0" style="-fx-background-color: #238823; -fx-text-fill: white;" text="Add" />
+        </buttons>
+      </ButtonBar>
+   </children>
 </AnchorPane>
