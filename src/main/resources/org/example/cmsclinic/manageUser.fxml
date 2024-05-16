@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ManageUserController">
    <children>
-       <TextField fx:id="roleSearchBar" layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
+       <TextField fx:id="userSearchBar" layoutX="53.0" layoutY="31.0" prefHeight="37.0" prefWidth="213.0" promptText="Search user">
            <padding>
                <Insets left="15.0" />
            </padding>
@@ -153,12 +153,198 @@
       </AnchorPane>
       <AnchorPane fx:id="doctorView" layoutY="90.0" prefHeight="594.0" prefWidth="854.0" visible="false">
          <children>
-            <Text layoutX="364.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor" />
+            <Text layoutX="58.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor View">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="24.0" />
+               </font>
+            </Text>
+            <TableView fx:id="doctorTable" layoutX="53.0" layoutY="74.0" onMouseClicked="#clickDoctorTableRow" prefHeight="200.0" prefWidth="750.0">
+               <columns>
+                  <TableColumn fx:id="doctorId" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="doctorUsername" prefWidth="137.69100952148438" text="Username" />
+                  <TableColumn fx:id="doctorPassword" minWidth="0.0" prefWidth="130.48263549804688" text="Password" />
+                  <TableColumn fx:id="doctorDOB" prefWidth="116.63275146484375" text="D.O.B" />
+                  <TableColumn fx:id="doctorGender" prefWidth="97.64593505859375" text="Gender" />
+                  <TableColumn fx:id="doctorRole" prefWidth="75.806396484375" text="Role" />
+                  <TableColumn fx:id="doctorSpecialization" prefWidth="114.5" text="Specialization" />
+               </columns>
+            </TableView>
+            <HBox alignment="CENTER" layoutX="65.0" layoutY="304.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="doctorIdField" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="53.0" layoutY="372.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="doctorUsernameTextField" prefHeight="38.0" prefWidth="160.0" promptText="Username" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="54.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="doctorPasswordTextField" prefHeight="38.0" prefWidth="160.0" promptText="Password" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="48.0" layoutY="512.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="doctorDobField" prefHeight="38.0" prefWidth="171.0" promptText="Pick Date" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="414.0" layoutY="304.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="doctorGenderComboBox" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="407.0" layoutY="372.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Role:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="doctorRoleField" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="393.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="doctorSpecializationTextField" prefHeight="38.0" prefWidth="160.0" promptText="Specialization" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="patientView" layoutY="90.0" prefHeight="594.0" prefWidth="854.0" visible="false">
          <children>
-            <Text layoutX="364.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" />
+            <Text layoutX="58.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor View">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="24.0" />
+               </font>
+            </Text>
+            <TableView fx:id="patientTable" layoutX="53.0" layoutY="74.0" onMouseClicked="#clickPatientTableRow" prefHeight="200.0" prefWidth="750.0">
+               <columns>
+                  <TableColumn fx:id="patientId" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="patientUsername" prefWidth="137.69100952148438" text="Username" />
+                  <TableColumn fx:id="patientPassword" minWidth="0.0" prefWidth="130.48263549804688" text="Password" />
+                  <TableColumn fx:id="patientDOB" prefWidth="116.63275146484375" text="D.O.B" />
+                  <TableColumn fx:id="patientGender" prefWidth="97.64593505859375" text="Gender" />
+                  <TableColumn fx:id="patientRole" prefWidth="75.806396484375" text="Role" />
+                  <TableColumn fx:id="patientMedicalCase" prefWidth="114.5" text="Medical Case" />
+               </columns>
+            </TableView>
+            <HBox alignment="CENTER" layoutX="65.0" layoutY="304.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="patientIdField" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="53.0" layoutY="372.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="patientUsernameTextField" prefHeight="38.0" prefWidth="160.0" promptText="Username" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="54.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="patientPasswordTextField" prefHeight="38.0" prefWidth="160.0" promptText="Password" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="48.0" layoutY="512.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date Of Birth:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <DatePicker fx:id="patientDobField" prefHeight="38.0" prefWidth="171.0" promptText="Pick Date" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="414.0" layoutY="304.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="patientGenderComboBox" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="407.0" layoutY="372.0" prefHeight="51.0" prefWidth="223.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Role:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="patientRoleField" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="393.0" layoutY="442.0" prefHeight="51.0" prefWidth="289.0" spacing="10.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medical Case:">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="patientMedicalCaseTextField" prefHeight="38.0" prefWidth="160.0" promptText="Medical Case" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <ButtonBar layoutX="469.0" layoutY="691.0" prefHeight="51.0" prefWidth="334.0">

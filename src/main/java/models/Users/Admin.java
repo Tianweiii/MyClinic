@@ -34,11 +34,11 @@ public class Admin extends User {
             FileIO writer = new FileIO("a", "admin");
             writer.appendFile(data);
         } else if (role.equals("doctor")) {
-            String data = MessageFormat.format("DT{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
+            String data = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "doctor");
             writer.appendFile(data);
         } else {
-            String data = MessageFormat.format("PT{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
+            String data = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "patient");
             writer.appendFile(data);
         }
