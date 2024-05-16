@@ -28,7 +28,7 @@ public class Admin extends User {
         return salary;
     }
 
-    public boolean registerAccount(String id, String username, String password, String DOB, String gender, String role, String special) {
+    public void registerAccount(String id, String username, String password, String DOB, String gender, String role, String special) {
         if (role.equals("admin")) {
             String data = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}\n", id, username, password, DOB, gender, role, special);
             FileIO writer = new FileIO("a", "admin");
@@ -42,13 +42,45 @@ public class Admin extends User {
             FileIO writer = new FileIO("a", "patient");
             writer.appendFile(data);
         }
-
         System.out.println("Successfully Registered Account!");
-        return true;
     }
 
-    public void manageUser(String userID, String role) {
+    public void writeToRoleFile(ArrayList<String> data, String role) {
+        FileIO writer = new FileIO("w", role);
+        writer.writeFile(data);
+    }
 
+    public void updateUser(String id, String username, String password, String DOB, String gender, String role, String special) throws IOException {
+        ArrayList<String> data = new ArrayList<>();
+        switch (role) {
+            case "admin", "doctor", "patient" -> {
+                FileIO reader = new FileIO("r", role);
+                for (String row : reader.readFile()) {
+                    String[] arr = FileIO.splitString(row);
+                    if (arr[0].equals(id)) {
+                        row = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}", id, username, password, DOB, gender, role, special);
+                    }
+                    data.add(row);
+                }
+            }
+        }
+        writeToRoleFile(data, role);
+    }
+
+    public void deleteUser(String id, String role) throws IOException {
+        ArrayList<String> data = new ArrayList<>();
+        switch (role) {
+            case "admin", "doctor", "patient" -> {
+                FileIO reader = new FileIO("r", role);
+                for (String row : reader.readFile()) {
+                    String[] arr = FileIO.splitString(row);
+                    if (!arr[0].equals(id)) {
+                        data.add(row);
+                    }
+                }
+            }
+        }
+        writeToRoleFile(data, role);
     }
 
     public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) {

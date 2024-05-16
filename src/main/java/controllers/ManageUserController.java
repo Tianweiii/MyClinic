@@ -11,12 +11,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import models.Auth.Cookie;
 import models.Auth.Verification;
+import models.Datas.UserHistory;
 import models.Filing.FileIO;
 import models.Users.Admin;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ManageUserController implements Initializable {
@@ -130,13 +132,15 @@ public class ManageUserController implements Initializable {
             adminDobField.setValue(selected.dobToLocaldate());
             adminGenderComboBox.setValue(selected.getGender());
             adminSalaryTextField.setText(selected.getSalary());
+            addButton.setDisable(true);
+            updateButton.setDisable(false);
+            deleteButton.setDisable(false);
         }
     }
     public void setAdminIdField() {
-        int id;
-        FileIO reader = new FileIO("r", "admin");
+        String id;
         try {
-            id = (reader.countRowNum() + 1);
+            id = UserHistory.getNewId("admin");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -154,18 +158,27 @@ public class ManageUserController implements Initializable {
     private Button deleteButton;
     @FXML
     private Button resetButton;
-    public void verifyEmptyField() {
-
-    }
     public void addUser() throws IOException {
         if (adminView.isVisible()) {
+            String dob = "";
             String id = adminIdField.getText();
             String username = adminUsernameTextField.getText();
             String password = adminPasswordTextField.getText();
-            String dob = admin.LocalDateToDob(adminDobField.getValue());
+            if (adminDobField.getValue() != null) {
+                dob = admin.LocalDateToDob(adminDobField.getValue());
+            }
             String gender = adminGenderComboBox.getValue();
             String role = adminRoleField.getText().toLowerCase();
             String salary = adminSalaryTextField.getText();
+
+            if (!Verification.verifyEmptyFields(username, password, dob, gender, salary)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Register user error");
+                alert.setContentText("Please fill in all fields");
+                alert.showAndWait();
+                return;
+            }
+
             if (!Verification.verifyUsername(username, "admin")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Register user error");
@@ -178,8 +191,58 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
+            UserHistory.updateUserHistoryId(role);
             addAdminToTable();
             resetFields();
+        } else if (doctorView.isVisible()) {
+
+        } else if (patientView.isVisible()) {
+
+        }
+    }
+    public void updateUser() throws IOException {
+        if (adminView.isVisible()) {
+            String id = adminIdField.getText();
+            String username = adminUsernameTextField.getText();
+            String password = adminPasswordTextField.getText();
+            String dob = admin.LocalDateToDob(adminDobField.getValue());
+            String gender = adminGenderComboBox.getValue();
+            String role = adminRoleField.getText().toLowerCase();
+            String salary = adminSalaryTextField.getText();
+            admin.updateUser(id, username, password, dob, gender, role, salary);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful update");
+            alert.setContentText("User data has been successfully updated!");
+            alert.showAndWait();
+            addAdminToTable();
+            resetFields();
+        } else if (doctorView.isVisible()) {
+
+        } else if (patientView.isVisible()) {
+
+        }
+    }
+    public void deleteUser() throws IOException {
+        if (adminView.isVisible()) {
+            String id = adminIdField.getText();
+            String role = adminRoleField.getText().toLowerCase();
+            admin.deleteUser(id, role);
+
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("Confirm");
+            confirmation.setContentText(String.format("Are you sure you want to delete %s's data?", id));
+            Optional<ButtonType> result = confirmation.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Successful deletion");
+                alert.setContentText("User data has been successfully deleted!");
+                alert.showAndWait();
+                addAdminToTable();
+                resetFields();
+            }
+
         } else if (doctorView.isVisible()) {
 
         } else if (patientView.isVisible()) {
@@ -195,6 +258,7 @@ public class ManageUserController implements Initializable {
             adminDobField.setValue(null);
             adminGenderComboBox.setValue(null);
             adminSalaryTextField.setText("");
+            addButton.setDisable(false);
         } else if (doctorView.isVisible()) {
 
         } else if (patientView.isVisible()) {

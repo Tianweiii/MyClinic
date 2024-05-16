@@ -19,6 +19,7 @@ import javafx.scene.text.Text;
 import models.Auth.Cookie;
 import models.Datas.Appointment;
 import models.Datas.Payment;
+import models.Datas.UserHistory;
 import models.Filing.FileIO;
 import models.Users.Admin;
 import models.Users.Doctor;
@@ -327,13 +328,10 @@ public class HomeController implements Initializable {
         Number adminCount;
         Number doctorCount;
         Number patientCount;
-        FileIO adminReader = new FileIO("r", "admin");
-        FileIO doctorReader = new FileIO("r", "doctor");
-        FileIO patientReader = new FileIO("r", "patient");
         try {
-            adminCount = adminReader.countRowNum();
-            doctorCount = doctorReader.countRowNum();
-            patientCount = patientReader.countRowNum();
+            adminCount = UserHistory.getExistingCount("admin");
+            doctorCount = UserHistory.getExistingCount("doctor");
+            patientCount = UserHistory.getExistingCount("patient");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

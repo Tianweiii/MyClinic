@@ -21,6 +21,19 @@ public class Verification {
         return true;
     }
 
+    //to check if the fields got update or not when updating user
+    public static boolean verifyFields() {
+        return true;
+    }
+
+    // if either one of the fields are empty, return false
+    public static boolean verifyEmptyFields(String username, String password, String dob, String gender, String salary) {
+        if (username.isBlank() || password.isBlank() || dob.isBlank() || gender.isBlank() || salary.isBlank()) {
+            return false;
+        }
+        return true;
+    }
+
     public static void verifyAppointment(String appointmentID) {}
 
     public static void verifyPayment(String paymentID) {}
