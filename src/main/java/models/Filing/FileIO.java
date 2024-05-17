@@ -2,6 +2,7 @@ package models.Filing;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FileIO {
@@ -80,5 +81,34 @@ public class FileIO {
 
     public static String[] splitString(String data) {
         return data.split(",\\s");
+    }
+
+    public static String[] splitArray(String arr) {
+        return arr.replaceAll("\\[|\\]", "").split("-");
+    }
+
+    public static String updateArrayData(String replaceChar, String data, String time, String duration) {
+        String[] timeslots = splitArray(data);
+        int hour = Integer.parseInt(time.substring(0, 2));
+        for (int i = hour; i < (Integer.parseInt(duration) + hour); i++) {
+            for (int j = 0; j < timeslots.length; j++) {
+                if (timeslots[j].equals(String.valueOf(i))) {
+                    timeslots[j] = replaceChar;
+                }
+            }
+        }
+        return Arrays.toString(timeslots).replace(", ", "-");
+    }
+
+    public static String arrayToString(String[] data) {
+        String result = "";
+        for (int i = 0; i < data.length; i++) {
+            if (i == data.length - 1) {
+                result += data[i];
+            } else {
+                result += data[i] + ", ";
+            }
+        }
+        return result;
     }
 }

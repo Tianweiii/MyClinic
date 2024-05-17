@@ -1,4 +1,4 @@
-APT1, PT1, DT1, 15/05/2024, 1000, 1h, attended, checkup
-APT2, PT2, DT1, 20/05/2024, 1200, 1h, pending, surgery
-APT3, PT1, DT2, 19/05/2024, 1200, 2h, pending, checkup
-APT4, PT1, DT3, 24/05/2024, 1400, 1h, pending, checkup
+APT1, PT1, DT1, 15/05/2024, 1000, 1h, attended, checkup, SC1
+APT2, PT2, DT1, 20/05/2024, 1200, 1h, pending, surgery, SC16
+APT3, PT1, DT2, 19/05/2024, 1200, 2h, pending, checkup, SC14
+APT4, PT1, DT3, 24/05/2024, 1400, 1h, pending, checkup, SC30

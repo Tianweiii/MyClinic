@@ -469,7 +469,7 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateUserHistoryId(role);
+            DataHistory.updateDataHistoryCount(role);
             addAdminToTable();
             resetFields();
         } else if (doctorView.isVisible()) {
@@ -505,7 +505,7 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateUserHistoryId(role);
+            DataHistory.updateDataHistoryCount(role);
             addDoctorToTable();
             resetFields();
         } else if (patientView.isVisible()) {
@@ -541,7 +541,7 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateUserHistoryId(role);
+            DataHistory.updateDataHistoryCount(role);
             addPatientToTable();
             resetFields();
         }

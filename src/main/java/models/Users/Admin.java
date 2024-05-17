@@ -6,10 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import models.Auth.Verification;
-import models.Datas.MedicalRecord;
-import models.Datas.Payment;
+import models.Datas.*;
 import models.Filing.FileIO;
-import models.Datas.Appointment;
 
 public class Admin extends User {
     String salary;
@@ -83,14 +81,27 @@ public class Admin extends User {
         writeToRoleFile(data, role);
     }
 
-    public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) {
+    public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) throws IOException {
+        //get current date
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
+        //get schedule id of current date
+        String appointmentScheduleId = Schedule.getAppointmentScheduleID(currentDate);
 
+        // get new appointment id
         String id = Appointment.getNewAppointmentId();
-        Appointment newAppointment = new Appointment(id, patientID, doctorID, currentDate, time, duration, "walk-in", description);
+        //create appointment object and update appointment file
+        Appointment newAppointment = new Appointment(id, patientID, doctorID, currentDate, time, duration, "walk-in", description, appointmentScheduleId);
         newAppointment.addToAppointmentFile();
+        System.out.println("Appointment file updated");
+
+        //update data history file count
+        DataHistory.updateDataHistoryCount("appointment");
+
+        //update schedule file
+        Schedule.updateScheduleFile(id, appointmentScheduleId, time, duration);
+        System.out.println("Schedule file updated");
     }
 
     public void manageAppointment(String appointmentID, String date, String status) throws IOException{

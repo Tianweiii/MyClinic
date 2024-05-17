@@ -39,7 +39,7 @@ public class DataHistory {
         return String.valueOf(id);
     }
 
-    public static void updateUserHistoryId(String target) throws IOException {
+    public static void updateDataHistoryCount(String target) throws IOException {
         ArrayList<String> data = new ArrayList<>();
         FileIO reader = new FileIO("r", "dataHistory");
         for (String row : reader.readFile()) {

@@ -17,8 +17,9 @@ public class Appointment {
     private String duration;
     private String status;
     private String description;
+    private String scheduleID;
 
-    public Appointment(String appointmentID, String patientID, String doctorID, String date, String time, String duration, String status, String description) {
+    public Appointment(String appointmentID, String patientID, String doctorID, String date, String time, String duration, String status, String description, String scheduleID) {
         this.appointmentID = appointmentID;
         this.patientID = patientID;
         this.doctorID = doctorID;
@@ -27,11 +28,12 @@ public class Appointment {
         this.duration = duration;
         this.status = status;
         this.description = description;
+        this.scheduleID = scheduleID;
     }
 
     @Override
     public String toString() {
-        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}", appointmentID, patientID, doctorID, date, time, duration, status, description);
+        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}\n", appointmentID, patientID, doctorID, date, time, duration, status, description, scheduleID);
     }
 
     public void setStatus(String status) {
@@ -44,7 +46,7 @@ public class Appointment {
         for (String row : reader.readFile()) {
             String[] arr = FileIO.splitString(row);
             if (arr[3].equals(date)) {
-                Appointment someAppointment = new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]);
+                Appointment someAppointment = new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
                 data.add(someAppointment);
             }
         }
@@ -57,7 +59,7 @@ public class Appointment {
             String[] arr = FileIO.splitString(row);
             if (arr[0].equals(appointmentID) && arr[3].equals(date)) {
                 System.out.println("Found data");
-                return new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7]);
+                return new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
             }
         }
         return null;
@@ -79,9 +81,8 @@ public class Appointment {
 
     public static String getNewAppointmentId() {
         String id;
-        FileIO reader = new FileIO("r", "appointment");
         try {
-            id = String.valueOf(reader.countRowNum() + 1);
+            id = DataHistory.getNewId("appointment");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
