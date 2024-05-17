@@ -81,7 +81,7 @@ public class Admin extends User {
         writeToRoleFile(data, role);
     }
 
-    public void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) throws IOException {
+    public static void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) throws IOException {
         //get current date
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -104,7 +104,7 @@ public class Admin extends User {
         System.out.println("Schedule file updated");
     }
 
-    public void manageAppointment(String appointmentID, String date, String status) throws IOException{
+    public static void manageAppointment(String appointmentID, String date, String status) throws IOException{
         ArrayList<String> data = new ArrayList<>();
         Appointment target = Appointment.findAppointment(appointmentID, date);
         target.setStatus(status);

@@ -29,6 +29,8 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch();
+//        launch();
+        Admin.walkInAppointment("PT1", "DT1", "1000", "2h", "checkup");
+        Admin.manageAppointment("APT5", "17/05/2024", "cancelled");
     }
 }

@@ -33,7 +33,7 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}\n", appointmentID, patientID, doctorID, date, time, duration, status, description, scheduleID);
+        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", appointmentID, patientID, doctorID, date, time, duration, status, description, scheduleID);
     }
 
     public void setStatus(String status) {
@@ -91,7 +91,7 @@ public class Appointment {
 
     public void addToAppointmentFile() {
         FileIO appender = new FileIO("a", "appointment");
-        appender.appendFile(toString());
+        appender.appendFile(toString() + "\n");
         System.out.println("Created walk-in appointment");
     }
 
