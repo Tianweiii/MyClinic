@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import models.Auth.Cookie;
 import models.Auth.Verification;
-import models.Datas.UserHistory;
+import models.Datas.DataHistory;
 import models.Filing.FileIO;
 import models.Users.Admin;
 import models.Users.Doctor;
@@ -264,7 +264,7 @@ public class ManageUserController implements Initializable {
     public void setAdminIdField() {
         String id;
         try {
-            id = UserHistory.getNewId("admin");
+            id = DataHistory.getNewId("admin");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -341,7 +341,7 @@ public class ManageUserController implements Initializable {
     public void setDoctorIdField() {
         String id;
         try {
-            id = UserHistory.getNewId("doctor");
+            id = DataHistory.getNewId("doctor");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -418,7 +418,7 @@ public class ManageUserController implements Initializable {
     public void setPatientIdField() {
         String id;
         try {
-            id = UserHistory.getNewId("patient");
+            id = DataHistory.getNewId("patient");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -469,7 +469,7 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            UserHistory.updateUserHistoryId(role);
+            DataHistory.updateUserHistoryId(role);
             addAdminToTable();
             resetFields();
         } else if (doctorView.isVisible()) {
@@ -505,7 +505,7 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            UserHistory.updateUserHistoryId(role);
+            DataHistory.updateUserHistoryId(role);
             addDoctorToTable();
             resetFields();
         } else if (patientView.isVisible()) {
@@ -541,20 +541,31 @@ public class ManageUserController implements Initializable {
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            UserHistory.updateUserHistoryId(role);
+            DataHistory.updateUserHistoryId(role);
             addPatientToTable();
             resetFields();
         }
     }
     public void updateUser() throws IOException {
         if (adminView.isVisible()) {
+            String dob = "";
             String id = adminIdField.getText();
             String username = adminUsernameTextField.getText();
             String password = adminPasswordTextField.getText();
-            String dob = admin.LocalDateToDob(adminDobField.getValue());
+            if (adminDobField.getValue() != null) {
+                dob = admin.LocalDateToDob(adminDobField.getValue());
+            }
             String gender = adminGenderComboBox.getValue();
             String role = adminRoleField.getText().toLowerCase();
             String salary = adminSalaryTextField.getText();
+
+            if (!Verification.verifyUsername(username, "admin")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("Username already exists. Please use another username");
+                alert.showAndWait();
+                return;
+            }
             admin.updateUser(id, username, password, dob, gender, role, salary);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -664,6 +675,8 @@ public class ManageUserController implements Initializable {
             adminGenderComboBox.setValue(null);
             adminSalaryTextField.setText("");
             addButton.setDisable(false);
+            updateButton.setDisable(true);
+            deleteButton.setDisable(true);
         } else if (doctorView.isVisible()) {
             doctorTable.getSelectionModel().clearSelection();
             setDoctorIdField();
@@ -673,6 +686,8 @@ public class ManageUserController implements Initializable {
             doctorGenderComboBox.setValue(null);
             doctorSpecializationTextField.setText("");
             addButton.setDisable(false);
+            updateButton.setDisable(true);
+            deleteButton.setDisable(true);
         } else if (patientView.isVisible()) {
             patientTable.getSelectionModel().clearSelection();
             setPatientIdField();
@@ -682,6 +697,8 @@ public class ManageUserController implements Initializable {
             patientGenderComboBox.setValue(null);
             patientMedicalCaseTextField.setText("");
             addButton.setDisable(false);
+            updateButton.setDisable(true);
+            deleteButton.setDisable(true);
         }
     }
 }

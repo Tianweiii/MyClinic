@@ -5,9 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import models.Datas.Payment;
-import models.Datas.UserHistory;
-import models.Filing.FileIO;
 
 import java.io.IOException;
 

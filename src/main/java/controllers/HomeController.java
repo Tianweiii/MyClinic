@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import models.Auth.Cookie;
 import models.Datas.Appointment;
 import models.Datas.Payment;
-import models.Datas.UserHistory;
+import models.Datas.DataHistory;
 import models.Filing.FileIO;
 import models.Users.Admin;
 import models.Users.Doctor;
@@ -329,9 +329,9 @@ public class HomeController implements Initializable {
         Number doctorCount;
         Number patientCount;
         try {
-            adminCount = UserHistory.getExistingCount("admin");
-            doctorCount = UserHistory.getExistingCount("doctor");
-            patientCount = UserHistory.getExistingCount("patient");
+            adminCount = DataHistory.getExistingCount("admin");
+            doctorCount = DataHistory.getExistingCount("doctor");
+            patientCount = DataHistory.getExistingCount("patient");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
