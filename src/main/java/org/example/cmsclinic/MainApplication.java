@@ -17,7 +17,7 @@ import java.util.Date;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("adminMain.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("login.fxml"));
 //        FXMLLoader parent = new FXMLLoader(MainApplication.class.getResource("login.fxml"));
 //        Scene scene = new Scene(parent.load());
         Scene scene = new Scene(parent);

@@ -194,7 +194,7 @@ public class ManageUserController implements Initializable {
     private Button showDoctorButton;
     @FXML
     private Button showPatientButton;
-    
+
     @FXML
     private TableView<Admin> adminTable;
     @FXML
@@ -463,11 +463,12 @@ public class ManageUserController implements Initializable {
                 return;
             }
             admin.registerAccount(id, username, password, dob, gender, role, salary);
+            filteredAdmin = new FilteredList<>(getAllAdmin(), predicate -> true);
+            adminTable.setItems(filteredAdmin);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateDataHistoryCount(role);
             addAdminToTable();
             resetFields();
         } else if (doctorView.isVisible()) {
@@ -499,11 +500,12 @@ public class ManageUserController implements Initializable {
             }
 
             admin.registerAccount(id, username, password, dob, gender, role, specialization);
+            filteredDoctor = new FilteredList<>(getAllDoctor(), predicate -> true);
+            doctorTable.setItems(filteredDoctor);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateDataHistoryCount(role);
             addDoctorToTable();
             resetFields();
         } else if (patientView.isVisible()) {
@@ -535,11 +537,12 @@ public class ManageUserController implements Initializable {
             }
 
             admin.registerAccount(id, username, password, dob, gender, role, medicalCase);
+            filteredPatient = new FilteredList<>(getAllPatient(), predicate -> true);
+            patientTable.setItems(filteredPatient);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful registration");
             alert.setContentText("User has been successfully registered!");
             alert.showAndWait();
-            DataHistory.updateDataHistoryCount(role);
             addPatientToTable();
             resetFields();
         }

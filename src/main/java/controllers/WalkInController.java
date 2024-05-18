@@ -2,6 +2,8 @@ package controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -10,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import models.Auth.Cookie;
+import models.Auth.Verification;
 import models.Datas.Appointment;
 import models.Datas.DataHistory;
 import models.Datas.Schedule;
@@ -23,11 +26,13 @@ import java.net.URL;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class WalkInController implements Initializable {
 
     Admin admin = Cookie.identityAdmin;
+    private FilteredList<Appointment> filteredList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,14 +51,29 @@ public class WalkInController implements Initializable {
         try {
             setPatientIdComboBox();
             setDoctorIdComboBox();
+            filteredList = new FilteredList<>(getAllWalkInAppointment(), predicate -> true);
+            walkInAppointmentTable.setItems(filteredList);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         setDateTodayField();
 
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> searchAppointments(newValue));
+
+        patientIdComboBox.setOnAction(e -> {
+            if (patientIdComboBox.getValue() != null) {
+                try {
+                    setPatientData(patientIdComboBox.getValue().split(" ")[0]);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
         doctorIdComboBox.setOnAction(e -> {
             if (doctorIdComboBox.getValue() != null) {
                 try {
+                    setDoctorData(doctorIdComboBox.getValue().split(" ")[0]);
                     setTimeComboBox();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
@@ -70,8 +90,38 @@ public class WalkInController implements Initializable {
 
     @FXML
     private TextField searchBar;
-    public void searchAppointments() {
+    public void searchAppointments(String input) {
+        String keyword = input.toLowerCase();
+        filteredList.setPredicate(data -> {
+            if (input.isEmpty() || input.isBlank() || input == null) {
+                return true;
+            }
 
+            if (data.getAppointmentID().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getPatientID().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getDoctorID().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getDate().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getTime().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getDuration().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getStatus().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getDescription().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else if (data.getScheduleID().toLowerCase().indexOf(keyword) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        SortedList<Appointment> sortedData = new SortedList<>(filteredList);
+        sortedData.comparatorProperty().bind(walkInAppointmentTable.comparatorProperty());
+        walkInAppointmentTable.setItems(sortedData);
     }
 
     @FXML
@@ -115,8 +165,7 @@ public class WalkInController implements Initializable {
     }
     public void clickTableRow(MouseEvent e) {
         addButton.setDisable(true);
-        editButton.setDisable(false);
-        deleteButton.setDisable(false);
+        cancelButton.setDisable(false);
         if (e.getClickCount() == 1 && !walkInAppointmentTable.getSelectionModel().isEmpty()) {
             Appointment selected = walkInAppointmentTable.getSelectionModel().getSelectedItem();
             try {
@@ -127,10 +176,14 @@ public class WalkInController implements Initializable {
             }
             appointmentIdField.setText(selected.getAppointmentID());
             patientIdComboBox.setValue(selected.getPatientID());
+            patientIdComboBox.setDisable(true);
             doctorIdComboBox.setValue(selected.getDoctorID());
+            doctorIdComboBox.setDisable(true);
             dateTodayField.setText(selected.getDate());
             timeComboBox.setValue(selected.getTime());
+            timeComboBox.setDisable(true);
             durationComboBox.setValue(selected.getDuration());
+            durationComboBox.setDisable(true);
             appointmentDescriptionTextField.setText(selected.getDescription());
         }
     }
@@ -284,6 +337,8 @@ public class WalkInController implements Initializable {
         durationComboBox.getSelectionModel().clearSelection();
         timeComboBox.setDisable(true);
         durationComboBox.setDisable(true);
+        patientIdComboBox.setDisable(false);
+        doctorIdComboBox.setDisable(false);
         setWalkInAppointmentIdField();
         setDateTodayField();
         patientIdComboBox.setValue(null);
@@ -298,17 +353,74 @@ public class WalkInController implements Initializable {
 
     @FXML
     private Button addButton;
+    public void addWalkInAppointment() {
+        String patientId = "";
+        String doctorId = "";
+        String time = "";
+        String duration = "";
+        if (patientIdComboBox.getValue() != null) {
+            patientId = patientIdComboBox.getValue().split(" ")[0];
+        }
+        if (doctorIdComboBox.getValue() != null) {
+            doctorId = doctorIdComboBox.getValue().split(" ")[0];
+        }
+        String date = dateTodayField.getText();
+        if (timeComboBox.getValue() != null) {
+            time = timeComboBox.getValue();
+        }
+        if (durationComboBox.getValue() != null) {
+            duration = durationComboBox.getValue();
+        }
+        String description = appointmentDescriptionTextField.getText();
+
+        if (!Verification.verifyEmptyFields(patientId, doctorId, time, duration, description)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Walk In Appointment error");
+            alert.setContentText("Please fill in all fields");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            admin.walkInAppointment(patientId, doctorId, date, time + "00", duration, description);
+            filteredList = new FilteredList<>(getAllWalkInAppointment(), predicate -> true);
+            walkInAppointmentTable.setItems(filteredList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Walk In Appointment");
+        alert.setContentText("Walk In Appointment successfully created");
+        alert.showAndWait();
+        addWalkInAppointmentToTable();
+        resetFields();
+    }
     @FXML
-    private Button editButton;
-    @FXML
-    private Button deleteButton;
+    private Button cancelButton;
+    public void cancelWalkInAppointment() throws IOException {
+        String id = appointmentIdField.getText();
+
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirm");
+        confirmation.setContentText(String.format("Are you sure you want to cancel %s's appointment?", id));
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            admin.cancelWalkInAppointment(id);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Successful cancellation");
+            alert.setContentText("Appointment has been successfully cancelled!");
+            alert.showAndWait();
+            addWalkInAppointmentToTable();
+            resetFields();
+        }
+    }
     @FXML
     private Button resetButton;
     public void resetFields() {
         walkInAppointmentTable.getSelectionModel().clearSelection();
         addButton.setDisable(false);
-        editButton.setDisable(true);
-        deleteButton.setDisable(true);
+        cancelButton.setDisable(true);
         resetAppointmentData();
         resetPatientData();
         resetDoctorData();

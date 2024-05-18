@@ -41,6 +41,11 @@ public class Admin extends User {
             writer.appendFile(data);
         }
         System.out.println("Successfully Registered Account!");
+        try {
+            DataHistory.updateDataHistoryCount(role);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void writeToRoleFile(ArrayList<String> data, String role) {
@@ -81,18 +86,14 @@ public class Admin extends User {
         writeToRoleFile(data, role);
     }
 
-    public static void walkInAppointment(String patientID, String doctorID, String time, String duration, String description) throws IOException {
-        //get current date
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String currentDate = formatter.format(date);
+    public void walkInAppointment(String patientID, String doctorID, String date, String time, String duration, String description) throws IOException {
         //get schedule id of current date
-        String appointmentScheduleId = Schedule.getAppointmentScheduleID(currentDate);
+        String appointmentScheduleId = Schedule.getAppointmentScheduleID(doctorID, date);
 
         // get new appointment id
         String id = Appointment.getNewAppointmentId();
         //create appointment object and update appointment file
-        Appointment newAppointment = new Appointment(id, patientID, doctorID, currentDate, time, duration, "walk-in", description, appointmentScheduleId);
+        Appointment newAppointment = new Appointment(id, patientID, doctorID, date, time, duration, "walk-in", description, appointmentScheduleId);
         newAppointment.addToAppointmentFile();
         System.out.println("Appointment file updated");
 
@@ -104,7 +105,7 @@ public class Admin extends User {
         System.out.println("Schedule file updated");
     }
 
-    public static void manageAppointment(String appointmentID, String date, String status) throws IOException{
+    public void manageWalkInAppointment(String appointmentID, String date, String status) throws IOException{
         ArrayList<String> data = new ArrayList<>();
         Appointment target = Appointment.findAppointment(appointmentID, date);
         target.setStatus(status);
@@ -117,6 +118,21 @@ public class Admin extends User {
             data.add(row);
         }
         Appointment.writeToAppointmentFile(data);
+    }
+
+    public void cancelWalkInAppointment(String appointmentID) throws IOException {
+        ArrayList<String> data = new ArrayList<>();
+        FileIO reader = new FileIO("r", "appointment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[0].equals(appointmentID)) {
+                arr[6] = "cancelled";
+                row = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
+            }
+            data.add(row);
+        }
+        FileIO writer = new FileIO("w", "appointment");
+        writer.writeFile(data);
     }
 
     public ArrayList<MedicalRecord> trackMedicalRecord() throws IOException {

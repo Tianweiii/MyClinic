@@ -289,9 +289,8 @@
       </TextField>
       <VBox alignment="CENTER" layoutX="706.0" layoutY="509.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 15;">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
-            <Button fx:id="editButton" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: yellow;" text="Edit" />
-            <Button fx:id="deleteButton" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
+            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
             <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: blue;" text="Reset" textFill="WHITE" />
          </children>
          <opaqueInsets>
