@@ -17,7 +17,7 @@ import java.util.Date;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("adminMain.fxml"));
 //        FXMLLoader parent = new FXMLLoader(MainApplication.class.getResource("login.fxml"));
 //        Scene scene = new Scene(parent.load());
         Scene scene = new Scene(parent);
@@ -29,8 +29,6 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-//        launch();
-        Admin.walkInAppointment("PT1", "DT1", "1000", "2h", "checkup");
-        Admin.manageAppointment("APT5", "17/05/2024", "cancelled");
+        launch();
     }
 }

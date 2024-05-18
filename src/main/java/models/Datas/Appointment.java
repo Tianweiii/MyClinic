@@ -31,6 +31,34 @@ public class Appointment {
         this.scheduleID = scheduleID;
     }
 
+    public String getAppointmentID() {
+        return appointmentID;
+    }
+    public String getPatientID() {
+        return patientID;
+    }
+    public String getDoctorID() {
+        return doctorID;
+    }
+    public String getDate() {
+        return date;
+    }
+    public String getTime() {
+        return time;
+    }
+    public String getDuration() {
+        return duration;
+    }
+    public String getStatus() {
+        return status;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public String getScheduleID() {
+        return scheduleID;
+    }
+
     @Override
     public String toString() {
         return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", appointmentID, patientID, doctorID, date, time, duration, status, description, scheduleID);
@@ -99,4 +127,6 @@ public class Appointment {
         FileIO writer = new FileIO("w", "appointment");
         writer.writeFile(data);
     }
+
+
 }

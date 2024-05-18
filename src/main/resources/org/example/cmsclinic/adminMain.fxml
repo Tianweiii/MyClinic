@@ -93,7 +93,7 @@
               <fx:include source="manageUser.fxml" />
           </children>
       </AnchorPane>
-      <AnchorPane fx:id="walkInPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
+      <AnchorPane fx:id="walkInPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0">
           <children>
               <fx:include source="walkIn.fxml" />
           </children>
@@ -108,7 +108,7 @@
               <fx:include source="trackMedRep.fxml" />
           </children>
       </AnchorPane>
-      <AnchorPane fx:id="paymentPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0">
+      <AnchorPane fx:id="paymentPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
           <children>
               <fx:include source="payment.fxml" />
           </children>

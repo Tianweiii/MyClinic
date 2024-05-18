@@ -188,15 +188,13 @@ public class ManageUserController implements Initializable {
         }
     }
 
-
     @FXML
     private Button showAdminButton;
     @FXML
     private Button showDoctorButton;
     @FXML
     private Button showPatientButton;
-
-
+    
     @FXML
     private TableView<Admin> adminTable;
     @FXML

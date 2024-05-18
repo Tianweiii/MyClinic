@@ -2,7 +2,11 @@ package models.Users;
 
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import models.Filing.FileIO;
@@ -87,18 +91,35 @@ public class User {
         return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}", ID, username, password, dateOfBirth, gender, role);
     }
 
-    public static List<String> getAccounts(Admin admin) throws IOException {
-        FileIO reader = new FileIO("r", "admin");
-        return reader.readFile();
+    public static List<String> getAccounts(String role) throws IOException {
+        switch (role) {
+            case "admin" -> {
+                FileIO reader = new FileIO("r", "admin");
+                return reader.readFile();
+            }
+            case "doctor" -> {
+                FileIO reader = new FileIO("r", "doctor");
+                return reader.readFile();
+            }
+            case "patient" -> {
+                FileIO reader = new FileIO("r", "patient");
+                return reader.readFile();
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 
-    public static List<String> getAccounts(Doctor doctor) throws IOException {
-        FileIO reader = new FileIO("r", "doctor");
-        return reader.readFile();
-    }
+    public static String getAge(String date) {
+//        Date data = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        String currentDate = formatter.format(data);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate birthdate = LocalDate.parse(date, formatter);
+        LocalDate currentDate = LocalDate.now();
+        Period period = Period.between(birthdate, currentDate);
 
-    public static List<String> getAccounts(Patient patient) throws IOException {
-        FileIO reader = new FileIO("r", "patient");
-        return reader.readFile();
+        return String.valueOf(period.getYears());
     }
 }
