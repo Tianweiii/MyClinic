@@ -88,30 +88,6 @@
              <fx:include source="home.fxml" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="manageUserPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
-          <children>
-              <fx:include source="manageUser.fxml" />
-          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="walkInPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0">
-          <children>
-              <fx:include source="walkIn.fxml" />
-          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="trackAppointmentPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
-          <children>
-              <fx:include source="trackAppointment.fxml" />
-          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="trackMedReportPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
-          <children>
-              <fx:include source="trackMedRep.fxml" />
-          </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paymentPage" layoutX="225.0" prefHeight="765.0" prefWidth="854.0" visible="false">
-          <children>
-              <fx:include source="payment.fxml" />
-          </children>
-      </AnchorPane>
+       <AnchorPane fx:id="contentArea" layoutX="225.0" layoutY="0.0" prefHeight="765.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
    </children>
 </AnchorPane>

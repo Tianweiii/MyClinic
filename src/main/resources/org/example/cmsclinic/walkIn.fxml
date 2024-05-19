@@ -24,8 +24,8 @@
             <TableColumn fx:id="appointmentTimeColumn" prefWidth="71.71978759765625" text="Time" />
             <TableColumn fx:id="appointmentDurationColumn" prefWidth="60.812255859375" text="Duration" />
             <TableColumn fx:id="appointmentStatusColumn" prefWidth="85.58978271484375" text="Status" />
-            <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="91.3297119140625" text="Description" />
-            <TableColumn fx:id="appointmentScheduleIdColumn" prefWidth="107.67041015625" text="Schedule ID" />
+            <TableColumn fx:id="appointmentDescriptionColumn" prefWidth="158.5" text="Description" />
+            <TableColumn fx:id="appointmentScheduleIdColumn" prefWidth="92.0" text="Schedule ID" />
         </columns>
       </TableView>
       <Text layoutX="26.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk In Appointment">

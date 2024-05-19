@@ -2,100 +2,58 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
-public class AdminController {
+public class AdminController implements Initializable {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        pressHomeButton();
+    }
 
     @FXML
     private VBox navbar;
 
     @FXML
-    private Button homeButton;
-    @FXML
-    private Button paymentButton;
-    @FXML
-    private Button trackAppointmentButton;
-    @FXML
-    private Button trackMedicalReportButton;
-    @FXML
-    private Button walkInButton;
-    @FXML
-    private Button logOutButton;
+    private AnchorPane contentArea;
 
-    @FXML
-    private AnchorPane homePage;
-    @FXML
-    private AnchorPane manageUserPage;
-    @FXML
-    private AnchorPane walkInPage;
-    @FXML
-    private AnchorPane trackAppointmentPage;
-    @FXML
-    private AnchorPane trackMedReportPage;
-    @FXML
-    private AnchorPane paymentPage;
+    private Map<String, Parent> cache = new HashMap<>();
 
     public void pressHomeButton() {
-        homePage.setVisible(true);
-        manageUserPage.setVisible(false);
-        walkInPage.setVisible(false);
-        trackAppointmentPage.setVisible(false);
-        trackMedReportPage.setVisible(false);
-        paymentPage.setVisible(false);
+        loadPage("home.fxml");
     }
 
     public void pressManageUserButton() {
-        homePage.setVisible(false);
-        manageUserPage.setVisible(true);
-        walkInPage.setVisible(false);
-        trackAppointmentPage.setVisible(false);
-        trackMedReportPage.setVisible(false);
-        paymentPage.setVisible(false);
+        loadPage("manageUser.fxml");
     }
 
     public void pressWalkInButton() {
-        homePage.setVisible(false);
-        manageUserPage.setVisible(false);
-        walkInPage.setVisible(true);
-        trackAppointmentPage.setVisible(false);
-        trackMedReportPage.setVisible(false);
-        paymentPage.setVisible(false);
+        loadPage("walkIn.fxml");
     }
 
     public void pressTrackAptButton() {
-        homePage.setVisible(false);
-        manageUserPage.setVisible(false);
-        walkInPage.setVisible(false);
-        trackAppointmentPage.setVisible(true);
-        trackMedReportPage.setVisible(false);
-        paymentPage.setVisible(false);
+        loadPage("trackAppointment.fxml");
     }
 
     public void pressTrackMedRepButton() {
-        homePage.setVisible(false);
-        manageUserPage.setVisible(false);
-        walkInPage.setVisible(false);
-        trackAppointmentPage.setVisible(false);
-        trackMedReportPage.setVisible(true);
-        paymentPage.setVisible(false);
+        loadPage("trackMedRep.fxml");
     }
 
     public void pressPaymentButton() {
-        homePage.setVisible(false);
-        manageUserPage.setVisible(false);
-        walkInPage.setVisible(false);
-        trackAppointmentPage.setVisible(false);
-        trackMedReportPage.setVisible(false);
-        paymentPage.setVisible(true);
+        loadPage("payment.fxml");
     }
 
     public void pressLogOutButton() {
@@ -116,5 +74,21 @@ public class AdminController {
                 stage.show();
             }
         });
+    }
+
+    private void loadPage(String fxmlFile) {
+        Parent page = cache.get(fxmlFile);
+        if (page == null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cmsclinic/" + fxmlFile));
+                page = loader.load();
+                cache.put(fxmlFile, page);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        contentArea.getChildren().clear();
+        contentArea.getChildren().add(page);
     }
 }
