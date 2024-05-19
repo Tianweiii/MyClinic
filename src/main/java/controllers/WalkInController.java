@@ -18,7 +18,6 @@ import models.Datas.DataHistory;
 import models.Datas.Schedule;
 import models.Filing.FileIO;
 import models.Users.Admin;
-import models.Users.Patient;
 import models.Users.User;
 
 import java.io.IOException;
@@ -213,11 +212,11 @@ public class WalkInController implements Initializable {
         }
     }
     public void resetPatientData() {
-        patientId.setText("Choose Appointment");
-        patientName.setText("Choose Appointment");
-        patientAge.setText("Choose Appointment");
-        patientGender.setText("Choose Appointment");
-        patientMedicalCase.setText("Choose Appointment");
+        patientId.setText("Choose APT");
+        patientName.setText("Choose APT");
+        patientAge.setText("Choose APT");
+        patientGender.setText("Choose APT");
+        patientMedicalCase.setText("Choose APT");
     }
 
     @FXML
@@ -245,11 +244,11 @@ public class WalkInController implements Initializable {
         }
     }
     public void resetDoctorData() {
-        doctorId.setText("Choose Appointment");
-        doctorName.setText("Choose Appointment");
-        doctorAge.setText("Choose Appointment");
-        doctorGender.setText("Choose Appointment");
-        doctorSpecialization.setText("Choose Appointment");
+        doctorId.setText("Choose APT");
+        doctorName.setText("Choose APT");
+        doctorAge.setText("Choose APT");
+        doctorGender.setText("Choose APT");
+        doctorSpecialization.setText("Choose APT");
     }
 
     @FXML

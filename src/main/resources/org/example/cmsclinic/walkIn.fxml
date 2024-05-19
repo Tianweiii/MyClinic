@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WalkInController">
    <children>
-      <TableView fx:id="walkInAppointmentTable" layoutX="64.0" layoutY="83.0" onMouseClicked="#clickTableRow" prefHeight="200.0" prefWidth="744.0">
+      <TableView fx:id="walkInAppointmentTable" layoutX="26.0" layoutY="85.0" onMouseClicked="#clickTableRow" prefHeight="200.0" prefWidth="802.0">
         <columns>
           <TableColumn fx:id="appointmentIdColumn" prefWidth="100.0" text="Appointment ID" />
           <TableColumn fx:id="appointmentPatientIdColumn" prefWidth="73.0347900390625" text="Patient ID" />
@@ -28,274 +28,238 @@
             <TableColumn fx:id="appointmentScheduleIdColumn" prefWidth="107.67041015625" text="Schedule ID" />
         </columns>
       </TableView>
-      <Text layoutX="64.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk In Appointment">
+      <Text layoutX="26.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk In Appointment">
          <font>
             <Font name="Arial Rounded MT Bold" size="24.0" />
          </font>
       </Text>
-      <AnchorPane layoutX="64.0" layoutY="305.0" prefHeight="190.0" prefWidth="353.0" style="-fx-border-color: black;">
-         <children>
-            <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="54.0" prefHeight="31.0" prefWidth="164.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="patientId" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="12.0" layoutY="91.0" prefHeight="31.0" prefWidth="141.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="patientName" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="209.0" layoutY="54.0" prefHeight="31.0" prefWidth="106.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="patientAge" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="186.0" layoutY="90.0" prefHeight="31.0" prefWidth="128.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="patientGender" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="37.0" layoutY="130.0" prefHeight="31.0" prefWidth="258.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medical Case: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="patientMedicalCase" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <Text layoutX="23.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Details">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="64.0" layoutY="509.0" prefHeight="209.0" prefWidth="391.0" style="-fx-border-color: black;">
-         <children>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="41.0" prefHeight="29.0" prefWidth="168.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="appointmentIdField" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="7.0" layoutY="78.0" prefHeight="35.0" prefWidth="188.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="patientIdComboBox" prefHeight="26.0" prefWidth="107.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutY="121.0" prefHeight="35.0" prefWidth="200.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="doctorIdComboBox" prefHeight="26.0" prefWidth="106.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="196.0" layoutY="41.0" prefHeight="29.0" prefWidth="168.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="dateTodayField" strokeType="OUTSIDE" strokeWidth="0.0" text="Today Date" />
-               </children>
-            </HBox>
-            <Text layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk-In Appointment Details">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Text>
-            <HBox alignment="CENTER" layoutX="215.0" layoutY="78.0" prefHeight="35.0" prefWidth="168.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="timeComboBox" disable="true" prefHeight="26.0" prefWidth="87.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="203.0" layoutY="121.0" prefHeight="35.0" prefWidth="168.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="durationComboBox" disable="true" prefHeight="26.0" prefWidth="87.0" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="19.0" layoutY="164.0" prefHeight="39.0" prefWidth="342.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description: ">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="appointmentDescriptionTextField" prefHeight="30.0" prefWidth="217.0" promptText="Appointment Description" />
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="429.0" layoutY="305.0" prefHeight="190.0" prefWidth="377.0" style="-fx-border-color: black;">
-         <children>
-            <HBox alignment="CENTER_LEFT" layoutX="17.0" layoutY="54.0" prefHeight="31.0" prefWidth="164.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="doctorId" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="17.0" layoutY="91.0" prefHeight="31.0" prefWidth="141.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="doctorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="131.0" prefHeight="31.0" prefWidth="200.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="doctorSpecialization" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <Text layoutX="23.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Details">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="20.0" />
-               </font>
-            </Text>
-            <HBox alignment="CENTER_LEFT" layoutX="223.0" layoutY="53.0" prefHeight="31.0" prefWidth="106.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="doctorAge" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="198.0" layoutY="91.0" prefHeight="31.0" prefWidth="128.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender: ">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="doctorGender" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose Appointment">
-                     <font>
-                        <Font size="12.0" />
-                     </font></Text>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <PieChart fx:id="walkInChart" layoutX="473.0" layoutY="509.0" prefHeight="209.0" prefWidth="217.0" style="-fx-border-color: black;" />
-      <TextField fx:id="searchBar" layoutX="624.0" layoutY="43.0" prefHeight="26.0" prefWidth="185.0" promptText="Search Appoinment">
+      <TextField fx:id="searchBar" layoutX="628.0" layoutY="36.0" prefHeight="39.0" prefWidth="199.0" promptText="Search Appoinment">
          <font>
             <Font size="12.0" />
          </font>
       </TextField>
-      <VBox alignment="CENTER" layoutX="706.0" layoutY="509.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 15;">
+      <VBox layoutX="459.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
          <children>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: green;" text="Add" textFill="WHITE" />
-            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" />
-            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: blue;" text="Reset" textFill="WHITE" />
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #8338ec; -fx-spacing: 10;">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/walkInPatient.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="192.0" style="-fx-spacing: 10; -fx-background-color: white;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="patientId" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="141.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="patientName" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="106.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="patientAge" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="128.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="patientGender" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="258.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medical Case: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="patientMedicalCase" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </VBox>
+      <VBox layoutX="650.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #3a0ca3; -fx-spacing: 10;">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/walkInDoctor.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="149.0" style="-fx-spacing: 10; -fx-background-color: white;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="doctorId" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="141.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="doctorName" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="106.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="doctorAge" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="128.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="doctorGender" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="200.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="doctorSpecialization" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="26.0" layoutY="305.0" prefHeight="426.0" prefWidth="415.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="105.0" prefWidth="233.0" style="-fx-background-color: #4361ee; -fx-spacing: 10;">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/walk.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk-In Appointment Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox prefHeight="321.0" prefWidth="415.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="321.0" prefWidth="184.0" style="-fx-spacing: 15; -fx-background-color: white;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <AnchorPane prefHeight="321.0" prefWidth="233.0" style="-fx-background-color: white;">
+                     <children>
+                        <Text fx:id="appointmentIdField" layoutX="15.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+                        <ComboBox fx:id="patientIdComboBox" layoutX="15.0" layoutY="77.0" prefHeight="26.0" prefWidth="107.0" />
+                        <ComboBox fx:id="doctorIdComboBox" layoutX="15.0" layoutY="114.0" prefHeight="26.0" prefWidth="106.0" />
+                        <Text fx:id="dateTodayField" layoutX="15.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today Date" />
+                        <ComboBox fx:id="timeComboBox" disable="true" layoutX="15.0" layoutY="186.0" prefHeight="26.0" prefWidth="87.0" />
+                        <ComboBox fx:id="durationComboBox" disable="true" layoutX="15.0" layoutY="221.0" prefHeight="26.0" prefWidth="87.0" />
+                        <TextField fx:id="appointmentDescriptionTextField" layoutX="15.0" layoutY="255.0" minWidth="100.0" prefHeight="30.0" prefWidth="194.0" promptText="Appointment Description" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="458.0" layoutY="676.0" prefHeight="56.0" prefWidth="369.0" style="-fx-spacing: 10;">
+         <children>
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #2279e3;" text="Reset" textFill="WHITE" />
+            <Button fx:id="cancelButton" disable="true" mnemonicParsing="false" onAction="#cancelWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #d2222d;" text="Cancel" textFill="WHITE" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addWalkInAppointment" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #238823;" text="Add" textFill="WHITE" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
