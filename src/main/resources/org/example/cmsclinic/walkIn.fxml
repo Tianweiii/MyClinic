@@ -40,7 +40,7 @@
       </TextField>
       <VBox layoutX="459.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #8338ec; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #3a0ca3; -fx-spacing: 10;">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -112,7 +112,7 @@
       </VBox>
       <VBox layoutX="650.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #3a0ca3; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #4361ee; -fx-spacing: 10;">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -184,7 +184,7 @@
       </VBox>
       <VBox layoutX="26.0" layoutY="305.0" prefHeight="426.0" prefWidth="415.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="105.0" prefWidth="233.0" style="-fx-background-color: #4361ee; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="105.0" prefWidth="233.0" style="-fx-background-color: #8338ec; -fx-spacing: 10;">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>

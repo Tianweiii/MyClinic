@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TrackAppointmentController">
-    <children>
-        <Text layoutX="415.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Track Appointment Menu" />
-    </children>
+   <children>
+      <Label layoutX="53.0" layoutY="47.0" text="Track Daily Appointments">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="searchBar" layoutX="615.0" layoutY="42.0" prefHeight="39.0" prefWidth="197.0" promptText="Search Appointments" />
+      <TableView fx:id="dailyAppointmentTable" layoutX="56.0" layoutY="98.0" onMouseClicked="#clickTableRow" prefHeight="200.0" prefWidth="755.0">
+        <columns>
+          <TableColumn fx:id="appointmentIdColumn" prefWidth="98.50150680541992" text="Appointment ID" />
+          <TableColumn fx:id="patientIdColumn" prefWidth="75.06637573242188" text="Patient ID" />
+            <TableColumn fx:id="doctorIdColumn" minWidth="6.977783203125" prefWidth="75.74038696289062" text="Doctor ID" />
+            <TableColumn fx:id="dateColumn" prefWidth="75.10910034179688" text="Date" />
+            <TableColumn fx:id="timeColumn" prefWidth="53.06494140625" text="Time" />
+            <TableColumn fx:id="durationColumn" prefWidth="63.435089111328125" text="Duration" />
+            <TableColumn fx:id="statusColumn" prefWidth="73.87020874023438" text="Status" />
+            <TableColumn fx:id="descriptionColumn" minWidth="0.0" prefWidth="143.126953125" text="Description" />
+            <TableColumn fx:id="scheduleIdColumn" prefWidth="99.50006103515625" text="Schedule ID" />
+        </columns>
+      </TableView>
+      <VBox layoutX="56.0" layoutY="318.0" prefHeight="200.0" prefWidth="210.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="79.0" prefWidth="100.0" style="-fx-background-color: #ffbe0b;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="121.0" prefWidth="210.0" style="-fx-background-color: white; -fx-spacing: 10;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fx:id="patientId" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="patientUsername" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="medicalCase" layoutX="10.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medical Case">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="298.0" layoutY="318.0" prefHeight="200.0" prefWidth="210.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="79.0" prefWidth="100.0" style="-fx-background-color: #fb5607;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="121.0" prefWidth="210.0" style="-fx-background-color: white; -fx-spacing: 10;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fx:id="doctorId" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="doctorUsername" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username ID">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="specialization" layoutX="10.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization">
+                     <font>
+                        <Font name="Avenir Black" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="chartVBox" alignment="CENTER" layoutX="538.0" layoutY="318.0" prefHeight="340.0" prefWidth="273.0" style="-fx-border-color: black;" />
+      <VBox layoutX="56.0" layoutY="540.0" prefHeight="190.0" prefWidth="452.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="59.0" prefWidth="450.0" style="-fx-background-color: #ff006e;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="131.0" prefWidth="452.0" style="-fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text layoutX="38.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APT ID: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="53.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="276.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="250.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="40.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="229.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description: ">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="appointmentId" layoutX="106.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                  <Text fx:id="appointmentDate" layoutX="105.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                  <Text fx:id="appointmentTime" layoutX="332.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                  <Text fx:id="appointmentDuration" layoutX="332.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                  <Text fx:id="appointmentDescription" layoutX="332.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose APT" />
+                  <ComboBox fx:id="appointmentStatusComboBox" disable="true" layoutX="99.0" layoutY="90.0" prefHeight="26.0" prefWidth="119.0" promptText="Choose APT" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <Button fx:id="editButton" disable="true" layoutX="731.0" layoutY="700.0" mnemonicParsing="false" onAction="#editAppointmentStatus" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #3a86ff;" text="Edit" textFill="WHITE" />
+      <Button fx:id="resetButton" layoutX="641.0" layoutY="701.0" mnemonicParsing="false" onAction="#resetFields" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: #8338ec;" text="Reset" textFill="WHITE" />
+   </children>
 </AnchorPane>

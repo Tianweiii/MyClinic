@@ -45,7 +45,7 @@ public class Schedule {
             if (data[1].equals(doctorId) && data[2].equals(date)) {
                 String[] times = FileIO.splitArray(data[3]);
                 for (String time : times) {
-                    if (!time.contains("APT")) {
+                    if (!time.contains("APT") || !time.contains("C")) {
                         availableTimes.add(time);
                     }
                 }

@@ -26,7 +26,6 @@ public class AdminController implements Initializable {
 
     @FXML
     private VBox navbar;
-
     @FXML
     private AnchorPane contentArea;
 
@@ -48,8 +47,8 @@ public class AdminController implements Initializable {
         loadPage("trackAppointment.fxml");
     }
 
-    public void pressTrackMedRepButton() {
-        loadPage("trackMedRep.fxml");
+    public void pressTrackMedRecButton() {
+        loadPage("trackMedRec.fxml");
     }
 
     public void pressPaymentButton() {
@@ -77,17 +76,18 @@ public class AdminController implements Initializable {
     }
 
     private void loadPage(String fxmlFile) {
-        Parent page = cache.get(fxmlFile);
-        if (page == null) {
+//        Parent page = cache.get(fxmlFile);
+        Parent page;
+//        if (page == null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/cmsclinic/" + fxmlFile));
                 page = loader.load();
-                cache.put(fxmlFile, page);
+//                cache.put(fxmlFile, page);
             } catch (IOException e) {
                 e.printStackTrace();
                 return;
             }
-        }
+//        }
         contentArea.getChildren().clear();
         contentArea.getChildren().add(page);
     }

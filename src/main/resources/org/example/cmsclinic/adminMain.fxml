@@ -49,7 +49,7 @@
                                </ImageView>
                            </graphic>
                        </Button>
-                       <Button fx:id="trackMedicalReportButton" mnemonicParsing="false" onAction="#pressTrackMedRepButton" prefHeight="43.0" prefWidth="187.0" styleClass="nav-btn" stylesheets="@../../../css/adminMain.css" text="Track Medical Reports">
+                       <Button fx:id="trackMedicalRecordButton" mnemonicParsing="false" onAction="#pressTrackMedRecButton" prefHeight="43.0" prefWidth="187.0" styleClass="nav-btn" stylesheets="@../../../css/adminMain.css" text="Track Medical Records">
                            <graphic>
                                <ImageView fitHeight="20.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                    <image>
@@ -88,6 +88,6 @@
              <fx:include source="home.fxml" />
          </children>
       </AnchorPane>
-       <AnchorPane fx:id="contentArea" layoutX="225.0" layoutY="0.0" prefHeight="765.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+       <AnchorPane fx:id="contentArea" layoutX="225.0" layoutY="0.0" prefHeight="765.0" prefWidth="854.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

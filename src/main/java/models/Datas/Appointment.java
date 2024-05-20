@@ -3,10 +3,8 @@ package models.Datas;
 import models.Filing.FileIO;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Appointment {
     final private String appointmentID;
@@ -128,5 +126,35 @@ public class Appointment {
         writer.writeFile(data);
     }
 
+    public static double getToDoAppointment() throws IOException {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = formatter.format(date);
 
+        double count = 0;
+        FileIO reader = new FileIO("r", "appointment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[3].equals(currentDate) && !arr[6].equals("completed") && !arr[6].equals("cancelled")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static double getCompletedDailyAppointment() throws IOException {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = formatter.format(date);
+
+        double count = 0;
+        FileIO reader = new FileIO("r", "appointment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[3].equals(currentDate) && arr[6].equals("completed")) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
