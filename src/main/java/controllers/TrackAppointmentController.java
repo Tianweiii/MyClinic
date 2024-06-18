@@ -19,6 +19,7 @@ import models.Users.Admin;
 import models.Users.User;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -76,13 +77,14 @@ public class TrackAppointmentController implements Initializable {
     @FXML
     private TableColumn<Appointment, String> timeColumn;
     ObservableList<Appointment> getAllDailyAppointment() throws IOException {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String currentDate = formatter.format(date);
+//        Date date = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        String currentDate = formatter.format(date);
 
         ObservableList<Appointment> dailyAppointments = FXCollections.observableArrayList();
-        ArrayList<Appointment> appointments = Appointment.findAppointment(currentDate);
-        dailyAppointments.addAll(appointments);
+//        ArrayList<Appointment> appointments = Appointment.findAppointment(currentDate);
+//        ArrayList<Appointment> appointments = admin.trackDailyAppointment();
+        dailyAppointments.addAll(admin.trackDailyAppointment());
 
         return dailyAppointments;
     }
@@ -257,7 +259,7 @@ public class TrackAppointmentController implements Initializable {
         String currentApt = appointmentId.getText();
         String newStatus = appointmentStatusComboBox.getValue();
         if (!newStatus.equals(cache)) {
-            admin.manageWalkInAppointment(currentApt, appointmentDate.getText(), newStatus);
+            admin.manageAppointment(currentApt, appointmentDate.getText(), newStatus);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Edit successful");

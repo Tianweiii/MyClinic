@@ -20,4 +20,10 @@ public class Cookie {
     public static void setCookie(Doctor userInfo) {
         identityDoctor = userInfo;
     }
+
+    public static void clearCookie() {
+        identityAdmin = null;
+        identityDoctor = null;
+        identityPatient = null;
+    }
 }

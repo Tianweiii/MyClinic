@@ -9,4 +9,7 @@ module org.example.learnjavafx {
     opens controllers to javafx.fxml;
     opens models.Users to javafx.base;
     opens models.Datas to javafx.base;
+
+    opens doctorController to javafx.fxml;
+    exports doctorController;
 }

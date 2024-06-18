@@ -3,6 +3,7 @@ package models.Datas;
 import models.Filing.FileIO;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,36 +16,65 @@ public class Payment {
     private String patientID;
     private String appointmentID;
     private String amount;
-    private String status;
-    private String dateModified;
+    private String method;
+    private String datePaid;
 
-    public Payment(String paymentID, String patientID, String appointmentID, String amount, String status, String dateModified) {
+    public Payment(String paymentID, String patientID, String appointmentID, String amount, String method, String datePaid) {
         this.paymentID = paymentID;
         this.patientID = patientID;
         this.appointmentID = appointmentID;
         this.amount = amount;
-        this.status = status;
-        this.dateModified = dateModified;
+        this.method = method;
+        this.datePaid = datePaid;
     }
 
     @Override
     public String toString() {
-        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}", paymentID, patientID, appointmentID, amount, status, dateModified);
+        return MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}", paymentID, patientID, appointmentID, amount, method, datePaid);
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public String getPaymentID() {
+        return paymentID;
+    }
+    public String getPatientID() {
+        return patientID;
+    }
+    public String getAppointmentID() {
+        return appointmentID;
+    }
+    public String getAmount() {
+        return amount;
+    }
+    public String getMethod() {
+        return method;
+    }
+    public String getDatePaid() {
+        return datePaid;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public static String getNewPaymentId() {
         String id;
-        FileIO reader = new FileIO("r", "payment");
         try {
-            id = String.valueOf(reader.countRowNum() + 1);
+            id = DataHistory.getNewId("payment");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return MessageFormat.format("PY{0}", id);
+    }
+
+    public static ArrayList<Payment> getAllPayments() throws IOException {
+        ArrayList<Payment> appointments = new ArrayList<>();
+        FileIO reader = new FileIO("r", "payment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            Payment data = new Payment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+            appointments.add(data);
+        }
+        return appointments;
     }
 
     public static Payment findPayment(String paymentId, String patientId) throws IOException {
@@ -52,8 +82,18 @@ public class Payment {
         for (String row : reader.readFile()) {
             String[] arr = FileIO.splitString(row);
             if (arr[0].equals(paymentId) && arr[1].equals(patientId)) {
-                System.out.println("Found data.");
                 return new Payment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+            }
+        }
+        return null;
+    }
+
+    public static String getOldPaymentAmount(String paymentId) throws IOException {
+        FileIO reader = new FileIO("r", "payment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[0].equals(paymentId)) {
+                return arr[3];
             }
         }
         return null;
@@ -61,7 +101,7 @@ public class Payment {
 
     public void addToPaymentFile() {
         FileIO appender = new FileIO("a", "payment");
-        appender.appendFile(toString());
+        appender.appendFile(toString() + "\n");
         System.out.println("Added payment.");
     }
 

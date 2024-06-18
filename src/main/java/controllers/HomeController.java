@@ -372,7 +372,7 @@ public class HomeController implements Initializable {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
-        int number = Appointment.findAppointment(currentDate).toArray().length;
+        int number = Appointment.findAppointments(currentDate).toArray().length;
 
         dailyAppointments.setText(String.valueOf(number) + " appointments");
     }
@@ -388,7 +388,7 @@ public class HomeController implements Initializable {
         FileIO reader = new FileIO("r", "payment");
         for (String row : reader.readFile()) {
             String[] data = row.split(",\\s");
-            if (data[5].split("/")[1].equals(currentDate) && data[4].equals("paid")) {
+            if (data[5].split("/")[1].equals(currentDate)) {
                 total += Integer.parseInt(data[3]);
             }
         }

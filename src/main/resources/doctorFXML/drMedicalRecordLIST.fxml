@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorMedicalRecordListController">
+    <children>
+        <AnchorPane layoutX="11.2" layoutY="9.0" prefHeight="261.0" prefWidth="818.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="10.0">
+            <children>
+                <TableView fx:id="MRTable" layoutX="408.0" layoutY="102.4" onMouseClicked="#getRecord" prefHeight="146.0" prefWidth="797.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="102.0">
+                    <columns>
+                        <TableColumn fx:id="MRRID" prefWidth="58.39999520778656" text="RecordID" />
+                        <TableColumn fx:id="MRApp" prefWidth="93.59998321533203" text="AppointmentID" />
+                        <TableColumn fx:id="MRPID" prefWidth="64.800048828125" text="PatientID" />
+                        <TableColumn fx:id="MRDiag" prefWidth="242.3999481201172" text="Diagnosis" />
+                        <TableColumn fx:id="MRMed" prefWidth="192.00003051757812" text="Medication" />
+                        <TableColumn fx:id="MRDesc" prefWidth="145.5999755859375" text="Description" />
+                    </columns>
+                </TableView>
+                <TextField fx:id="SearchMR" layoutX="38.0" layoutY="51.0" prefHeight="26.0" prefWidth="210.0" promptText="Search" />
+            </children>
+        </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="279.0" prefHeight="378.0" prefWidth="818.0">
+         <children>
+            <Text layoutX="65.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RecordID :" textAlignment="RIGHT" wrappingWidth="79.73678588867188" AnchorPane.rightAnchor="675.0">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.599999999999937" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AppointmentID :" textAlignment="RIGHT" wrappingWidth="121.33676147460938" AnchorPane.rightAnchor="675.0">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.599999999999937" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PatientID :" textAlignment="RIGHT" wrappingWidth="121.33676147460938" AnchorPane.rightAnchor="675.4632385253907">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.599999999999937" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diagnosis :" textAlignment="RIGHT" wrappingWidth="121.33676147460938" AnchorPane.rightAnchor="675.4632385253907">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.599999999999937" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medication :" textAlignment="RIGHT" wrappingWidth="121.33676147460938" AnchorPane.rightAnchor="675.4632385253907">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="21.599999999999937" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" textAlignment="RIGHT" wrappingWidth="121.33676147460938" AnchorPane.rightAnchor="675.4632385253907">
+               <font>
+                  <Font name="Lucida Fax Regular" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="showRID" layoutX="151.0" layoutY="2.0" AnchorPane.leftAnchor="152.0" />
+            <TextField fx:id="showAID" layoutX="151.0" layoutY="39.0" AnchorPane.leftAnchor="152.0" />
+            <TextField fx:id="showPID" layoutX="151.0" layoutY="78.0" AnchorPane.leftAnchor="152.0" />
+            <TextArea fx:id="showDia" layoutX="151.0" layoutY="121.0" prefHeight="74.0" prefWidth="582.0" AnchorPane.leftAnchor="152.0" />
+            <TextArea fx:id="showMed" layoutX="151.0" layoutY="218.0" prefHeight="46.0" prefWidth="534.0" AnchorPane.leftAnchor="152.0" />
+            <TextArea fx:id="showDes" layoutX="151.0" layoutY="296.0" prefHeight="63.0" prefWidth="534.0" AnchorPane.leftAnchor="152.0" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

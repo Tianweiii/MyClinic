@@ -1,10 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="765.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PaymentController">
     <children>
-        <Text layoutX="415.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Menu" />
+      <Text layoutX="61.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment View">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="searchBar" layoutX="602.0" layoutY="57.0" prefHeight="37.0" prefWidth="195.0" promptText="Search Payments" />
+      <TableView fx:id="paymentTable" layoutX="61.0" layoutY="115.0" onMouseClicked="#clickTableRow" prefHeight="200.0" prefWidth="736.0">
+        <columns>
+          <TableColumn fx:id="paymentIdColumn" prefWidth="98.0" text="Payment ID" />
+          <TableColumn fx:id="paymentPatientIdColumn" prefWidth="117.0" text="Patient ID" />
+            <TableColumn fx:id="paymentAppointmentIdColumn" prefWidth="130.446044921875" text="Appointment ID" />
+            <TableColumn fx:id="paymentAmountColumn" prefWidth="137.55392456054688" text="Amount" />
+            <TableColumn fx:id="paymentMethodColumn" prefWidth="125.9813232421875" text="Method" />
+            <TableColumn fx:id="paymentDateColumn" prefWidth="126.0186767578125" text="Date" />
+        </columns>
+      </TableView>
+      <VBox layoutX="70.0" layoutY="331.0" prefHeight="375.0" prefWidth="353.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="113.0" prefWidth="353.0" style="-fx-background-color: #ffbe0b;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/payment-method.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <HBox prefHeight="262.0" prefWidth="353.0" style="-fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="262.0" prefWidth="172.0" style="-fx-spacing: 30;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Payment ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date: ">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </VBox>
+                  <AnchorPane prefHeight="262.0" prefWidth="197.0" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+                     <children>
+                        <Text fx:id="paymentId" layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="patientIdComboBox" layoutX="12.0" layoutY="66.0" prefHeight="35.0" prefWidth="102.0" />
+                        <ComboBox fx:id="appointmentIdComboBox" disable="true" layoutX="12.0" layoutY="115.0" prefHeight="35.0" prefWidth="102.0" />
+                        <TextField fx:id="paymentAmount" layoutX="12.0" layoutY="164.0" prefHeight="37.0" prefWidth="118.0" promptText="Enter amount" />
+                        <Text fx:id="paymentDate" layoutX="13.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Date">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="487.0" layoutY="593.0" prefHeight="89.0" prefWidth="291.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="285.0" style="-fx-spacing: 10; -fx-background-color: white;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <RadioButton fx:id="cashRadio" mnemonicParsing="false" text="Cash">
+                     <font>
+                        <Font name="Arial Hebrew" size="14.0" />
+                     </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="paymentMethod" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <ImageView fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/cash.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="11.0" prefHeight="60.0" prefWidth="285.0" style="-fx-spacing: 10; -fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <RadioButton fx:id="cardRadio" mnemonicParsing="false" text="Card" toggleGroup="$paymentMethod">
+                     <font>
+                        <Font name="Arial Hebrew Scholar" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <ImageView fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/mastercard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="31.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/icons/visacard.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <ButtonBar layoutX="491.0" layoutY="700.0" prefHeight="40.0" prefWidth="287.0">
+        <buttons>
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetFields" prefHeight="40.0" style="-fx-background-color: #2279e3;" text="Reset" textFill="WHITE" />
+          <Button fx:id="editButton" disable="true" mnemonicParsing="false" onAction="#editPayment" prefHeight="40.0" style="-fx-background-color: #ffbf00;" text="Edit" textFill="WHITE" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPayment" prefHeight="40.0" style="-fx-background-color: #238823;" text="Add" textFill="WHITE" />
+        </buttons>
+      </ButtonBar>
+      <VBox layoutX="487.0" layoutY="331.0" prefHeight="246.0" prefWidth="291.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="78.0" prefWidth="289.0" style="-fx-background-color: #fb5607;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="169.0" prefWidth="291.0" style="-fx-background-color: white; -fx-spacing: 10;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
+               <children>
+                  <Text fx:id="appointmentDetailId" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="patientDetailId" strokeType="OUTSIDE" strokeWidth="0.0" text="Patient ID">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="doctorDetailId" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="dateDetailId" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="descriptionDetailId" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

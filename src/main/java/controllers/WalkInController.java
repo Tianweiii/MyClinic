@@ -398,6 +398,7 @@ public class WalkInController implements Initializable {
     private Button cancelButton;
     public void cancelWalkInAppointment() throws IOException {
         String id = appointmentIdField.getText();
+        String date = dateTodayField.getText();
 
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Confirm");
@@ -405,7 +406,8 @@ public class WalkInController implements Initializable {
         Optional<ButtonType> result = confirmation.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            admin.cancelWalkInAppointment(id);
+//            admin.cancelWalkInAppointment(id);
+            admin.manageAppointment(id, date, "cancelled");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful cancellation");
             alert.setContentText("Appointment has been successfully cancelled!");

@@ -14,11 +14,92 @@ public class Schedule {
     private String date;
     private String timeslots;
 
+    private String nineAM;
+    private String tenAM;
+    private String elevenAM;
+    private String twelvePM;
+    private String onePM;
+    private String twoPM;
+    private String threePM;
+    private String fourPM;
+    private String fivePM;
+
     public Schedule(String scheduleID, String doctorID, String date, String timeslots) {
         this.scheduleID = scheduleID;
         this.doctorID = doctorID;
         this.date = date;
         this.timeslots = timeslots;
+        parseTimeslots(timeslots);
+    }
+
+    private void parseTimeslots(String timeslots) {
+        timeslots = timeslots.substring(1, timeslots.length() - 1);
+        String[] slots = timeslots.split("-");
+
+        if (slots.length >= 9) {
+            this.nineAM = slots[0].trim();     // Slot number or APT code
+            this.tenAM = slots[1].trim();      // APT code
+            this.elevenAM = slots[2].trim();   // APT code or slot number
+            this.twelvePM = slots[3].trim();   // Slot number
+            this.onePM = slots[4].trim();      // Slot number
+            this.twoPM = slots[5].trim();      // Slot number
+            this.threePM = slots[6].trim();    // Slot number
+            this.fourPM = slots[7].trim();     // Slot number
+            this.fivePM = slots[8].trim();     // Slot number
+        }
+    }
+
+    public String setScheduleID() {
+        return scheduleID;
+    }
+    public String getScheduleID() {
+        return scheduleID;
+    }
+    public String setDoctorID() {
+        return scheduleID;
+    }
+    public String getDoctorID() {
+        return doctorID;
+    }
+    public String setDate() { return date; }
+    public String getDate() {
+        return date;
+    }
+    public String setTimeslots() {return timeslots;}
+    public String getTimeslots() {
+        return timeslots;
+    }
+    public String getNineAM() {
+        return nineAM;
+    }
+    public String getTenAM() {
+        return tenAM;
+    }
+    public String getElevenAM() {
+        return elevenAM;
+    }
+    public String getTwelvePM() {
+        return twelvePM;
+    }
+    public String getOnePM() {
+        return onePM;
+    }
+    public String getTwoPM() {
+        return twoPM;
+    }
+    public String getThreePM() {
+        return threePM;
+    }
+    public String getFourPM() {
+        return fourPM;
+    }
+    public String getFivePM() {
+        return fivePM;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("{0}, {1}, {2}, {3}", scheduleID, doctorID, date, timeslots);
     }
 
     public static void writeToScheduleFile(ArrayList<String> data) {
@@ -86,22 +167,6 @@ public class Schedule {
             }
         }
         return data;
-//        int index = 0;
-//        for (int i = 0; i < arr.size(); i++) {
-//            if (arr.get(i).equals(number)) {
-//                index = i;
-//                break;
-//            } else {
-//                index = -1;
-//            }
-//        }
-//        if (Integer.parseInt(arr.get(index + 1)) == Integer.parseInt(number) + 1 && Integer.parseInt(arr.get(index + 2)) == Integer.parseInt(number) + 2) {
-//            return "3";
-//        } else if (Integer.parseInt(arr.get(index + 1)) == Integer.parseInt(number) + 1) {
-//            return "2";
-//        } else {
-//            return "1";
-//        }
     }
 
     public static void updateScheduleFile(String appointmentID, String scheduleID, String time, String duration) throws IOException {

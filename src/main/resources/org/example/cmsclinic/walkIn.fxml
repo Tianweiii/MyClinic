@@ -38,9 +38,9 @@
             <Font size="12.0" />
          </font>
       </TextField>
-      <VBox layoutX="459.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
+      <VBox layoutX="459.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
          <children>
-            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #3a0ca3; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #3a0ca3; -fx-spacing: 10;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +54,7 @@
                   </Text>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="192.0" style="-fx-spacing: 10; -fx-background-color: white;">
+            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="192.0" style="-fx-spacing: 10; -fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
                      <children>
@@ -112,7 +112,7 @@
       </VBox>
       <VBox layoutX="650.0" layoutY="305.0" prefHeight="358.0" prefWidth="178.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #4361ee; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="153.0" prefWidth="248.0" style="-fx-background-color: #4361ee; -fx-spacing: 10;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -126,7 +126,7 @@
                   </Text>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="149.0" style="-fx-spacing: 10; -fx-background-color: white;">
+            <VBox alignment="CENTER" prefHeight="284.0" prefWidth="149.0" style="-fx-spacing: 10; -fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
                <children>
                   <HBox alignment="CENTER" prefHeight="31.0" prefWidth="164.0">
                      <children>
@@ -184,7 +184,7 @@
       </VBox>
       <VBox layoutX="26.0" layoutY="305.0" prefHeight="426.0" prefWidth="415.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="105.0" prefWidth="233.0" style="-fx-background-color: #8338ec; -fx-spacing: 10;">
+            <VBox alignment="CENTER" prefHeight="105.0" prefWidth="233.0" style="-fx-background-color: #8338ec; -fx-spacing: 10;" styleClass="borderTopRadius" stylesheets="@../../../css/general.css">
                <children>
                   <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -198,9 +198,9 @@
                   </Text>
                </children>
             </VBox>
-            <HBox prefHeight="321.0" prefWidth="415.0">
+            <HBox prefHeight="321.0" prefWidth="415.0" style="-fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
                <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="321.0" prefWidth="184.0" style="-fx-spacing: 15; -fx-background-color: white;">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="321.0" prefWidth="184.0" style="-fx-spacing: 15; -fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID: ">
                            <font>
@@ -239,7 +239,7 @@
                         </Text>
                      </children>
                   </VBox>
-                  <AnchorPane prefHeight="321.0" prefWidth="233.0" style="-fx-background-color: white;">
+                  <AnchorPane prefHeight="321.0" prefWidth="233.0" style="-fx-background-color: white;" styleClass="borderBottomRadius" stylesheets="@../../../css/general.css">
                      <children>
                         <Text fx:id="appointmentIdField" layoutX="15.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
                         <ComboBox fx:id="patientIdComboBox" layoutX="15.0" layoutY="77.0" prefHeight="26.0" prefWidth="107.0" />

@@ -105,7 +105,7 @@ public class Admin extends User {
         System.out.println("Schedule file updated");
     }
 
-    public void manageWalkInAppointment(String appointmentID, String date, String status) throws IOException{
+    public void manageAppointment(String appointmentID, String date, String status) throws IOException{
         ArrayList<String> data = new ArrayList<>();
         Appointment target = Appointment.findAppointment(appointmentID, date);
         target.setStatus(status);
@@ -118,21 +118,6 @@ public class Admin extends User {
             data.add(row);
         }
         Appointment.writeToAppointmentFile(data);
-    }
-
-    public void cancelWalkInAppointment(String appointmentID) throws IOException {
-        ArrayList<String> data = new ArrayList<>();
-        FileIO reader = new FileIO("r", "appointment");
-        for (String row : reader.readFile()) {
-            String[] arr = FileIO.splitString(row);
-            if (arr[0].equals(appointmentID)) {
-                arr[6] = "cancelled";
-                row = MessageFormat.format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
-            }
-            data.add(row);
-        }
-        FileIO writer = new FileIO("w", "appointment");
-        writer.writeFile(data);
     }
 
     public ArrayList<MedicalRecord> trackMedicalRecord() throws IOException {
@@ -151,24 +136,24 @@ public class Admin extends User {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
-        return Appointment.findAppointment(currentDate);
+        return Appointment.findAppointments(currentDate);
     }
 
-    public void addPayment(String PatientID, String AppointmentID, String amount, String status) {
+    public void addPayment(String PatientID, String AppointmentID, String amount, String method) {
         String id = Payment.getNewPaymentId();
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = formatter.format(date);
 
-        Payment data = new Payment(id, PatientID, AppointmentID, amount, status, currentDate);
+        Payment data = new Payment(id, PatientID, AppointmentID, amount, method, currentDate);
         data.addToPaymentFile();
     }
 
-    public void managePayment(String paymentId, String patientId, String status) throws IOException {
+    public void managePayment(String paymentId, String patientId, String amount) throws IOException {
         ArrayList<String> data = new ArrayList<>();
         Payment target = Payment.findPayment(paymentId, patientId);
-        target.setStatus(status);
+        target.setAmount(amount);
         FileIO reader = new FileIO("r", "payment");
         for (String row : reader.readFile()) {
             String[] arr = FileIO.splitString(row);

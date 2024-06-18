@@ -1,6 +1,10 @@
 package models.Datas;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Filing.FileIO;
+
+import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -66,7 +70,30 @@ public class Appointment {
         this.status = status;
     }
 
-    public static ArrayList<Appointment> findAppointment(String date) throws IOException {
+    public static ObservableList<String> getPatientAppointments(String patientId) throws IOException {
+        ObservableList<String> data = FXCollections.observableArrayList();
+        FileIO reader = new FileIO("r", "appointment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[1].equals(patientId)) {
+                data.add(arr[0]);
+            }
+        }
+        return data;
+    }
+
+    public static Appointment findAppointment(String appointmentID) throws IOException {
+        FileIO reader = new FileIO("r", "appointment");
+        for (String row : reader.readFile()) {
+            String[] arr = FileIO.splitString(row);
+            if (arr[0].equals(appointmentID)) {
+                return new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Appointment> findAppointments(String date) throws IOException {
         ArrayList<Appointment> data = new ArrayList<>();
         FileIO reader = new FileIO("r", "appointment");
         for (String row : reader.readFile()) {
@@ -89,20 +116,6 @@ public class Appointment {
             }
         }
         return null;
-    }
-
-    public List<Map<String, String>> getPatientAppointment(String patientID) throws IOException {
-        List<Map<String, String>> appointmentList = new ArrayList<>();
-        FileIO reader = new FileIO("r", "appointment");
-        for (String row : reader.readFile()) {
-            String[] arr = FileIO.splitString(row);
-            if (arr[1].equals(patientID)) {
-                Map<String, String> map = new HashMap<>();
-                map.put(arr[0], arr[3]);
-                appointmentList.add(map);
-            }
-        }
-        return appointmentList;
     }
 
     public static String getNewAppointmentId() {

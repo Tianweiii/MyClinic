@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import models.Auth.Cookie;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +30,7 @@ public class AdminController implements Initializable {
     @FXML
     private AnchorPane contentArea;
 
-    private Map<String, Parent> cache = new HashMap<>();
+//    private Map<String, Parent> cache = new HashMap<>();
 
     public void pressHomeButton() {
         loadPage("home.fxml");
@@ -64,6 +65,7 @@ public class AdminController implements Initializable {
                 Parent parent = null;
                 try {
                     parent = FXMLLoader.load(getClass().getResource("/org/example/cmsclinic/login.fxml"));
+                    Cookie.clearCookie();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

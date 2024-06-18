@@ -33,6 +33,12 @@ public class Verification {
         }
         return true;
     }
+    public static boolean verifyEmptyFields(String patientId, String appointmentId, String amount, String method) {
+        if (patientId.isBlank() || appointmentId.isBlank() || amount.isBlank() || method.isBlank()) {
+            return false;
+        }
+        return true;
+    }
 
     public static void verifyAppointment(String appointmentID) {}
 
