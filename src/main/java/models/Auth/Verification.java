@@ -21,11 +21,6 @@ public class Verification {
         return true;
     }
 
-    //to check if the fields got update or not when updating user
-    public static boolean verifyFields() {
-        return true;
-    }
-
     // if either one of the fields are empty, return false
     public static boolean verifyEmptyFields(String username, String password, String dob, String gender, String salary) {
         if (username.isBlank() || password.isBlank() || dob.isBlank() || gender.isBlank() || salary.isBlank()) {
@@ -40,9 +35,55 @@ public class Verification {
         return true;
     }
 
-    public static void verifyAppointment(String appointmentID) {}
-
-    public static void verifyPayment(String paymentID) {}
-
-    public static void verifyMedicalRecord(String medicalRecordID) {}
+    public static boolean verifyFields(String id, String oldUsername, String oldPassword, String oldDOB, String oldGender, String role, String special) {
+        switch (role) {
+            case "admin":
+                FileIO readAdmin = new FileIO("r", "admin");
+                try {
+                    for (String row : readAdmin.readFile()) {
+                        String[] arr = FileIO.splitString(row);
+                        if (arr[0].equals(id)) {
+                           if (arr[1].equals(oldUsername) && arr[2].equals(oldPassword) && arr[3].equals(oldDOB) && arr[4].equals(oldGender) && arr[6].equals(special)) {
+                               return false;
+                           }
+                        }
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return true;
+            case "doctor":
+                FileIO readDoc = new FileIO("r", "doctor");
+                try {
+                    for (String row : readDoc.readFile()) {
+                        String[] arr = FileIO.splitString(row);
+                        if (arr[0].equals(id)) {
+                            if (arr[1].equals(oldUsername) && arr[2].equals(oldPassword) && arr[3].equals(oldDOB) && arr[4].equals(oldGender) && arr[6].equals(special)) {
+                                return false;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return true;
+            case "patient":
+                FileIO readPat = new FileIO("r", "patient");
+                try {
+                    for (String row : readPat.readFile()) {
+                        String[] arr = FileIO.splitString(row);
+                        if (arr[0].equals(id)) {
+                            if (arr[1].equals(oldUsername) && arr[2].equals(oldPassword) && arr[3].equals(oldDOB) && arr[4].equals(oldGender) && arr[6].equals(special)) {
+                                return false;
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
 }

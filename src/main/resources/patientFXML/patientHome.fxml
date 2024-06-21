@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patientController.PatientHomeController">
+   <children>
+      <VBox fx:id="navbar" prefHeight="658.0" prefWidth="190.0" style="-fx-background-color: #34A0A4;">
+         <children>
+            <AnchorPane prefHeight="182.0" prefWidth="190.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="68.0" prefHeight="47.0" prefWidth="108.0" text="Welcome Patient!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+            <Button fx:id="homeButton" onAction="#pressHomeButton" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="timeSlotButton" layoutX="10.0" layoutY="10.0" onAction="#pressTimeslots" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Timeslot" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="makeAppointmentButton" mnemonicParsing="false" onAction="#pressAppointment" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Make Appointment" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="medicalRecordButton" mnemonicParsing="false" onAction="#pressMedicalRecord" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Medical Record" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="historicalAppointmentButton" mnemonicParsing="false" onAction="#pressHistoricalAppointment" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Historical Appointment" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#pressLogOutButton" prefHeight="43.0" prefWidth="230.0" style="-fx-background-color: #52B69A; -fx-border-color: #76C893;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="contentArea" layoutX="190.0" layoutY="2.0" prefHeight="658.0" prefWidth="704.0" />
+   </children>
+</AnchorPane>

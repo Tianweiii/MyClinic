@@ -90,7 +90,7 @@
                 </Button>
             </buttons>
         </ButtonBar>
-        <VBox layoutX="53.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
+        <VBox layoutX="120.0" layoutY="304.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
             <children>
                 <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
                     <children>
@@ -117,34 +117,7 @@
                 </HBox>
             </children>
         </VBox>
-        <VBox layoutX="313.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
-            <children>
-                <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
-                    <children>
-                        <Text fill="WHITE" layoutX="51.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Registrations" textAlignment="CENTER" wrappingWidth="166.04598999023438">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="15.0" />
-                            </font>
-                        </Text>
-                        <ImageView fitHeight="24.0" fitWidth="32.0" layoutX="21.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../images/icons/new.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </Pane>
-                <HBox alignment="CENTER" prefHeight="118.0" prefWidth="228.0" style="-fx-background-color: white;">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5 new users">
-                            <font>
-                                <Font name="Geneva" size="22.0" />
-                            </font>
-                        </Text>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-        <VBox layoutX="575.0" layoutY="305.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
+        <VBox layoutX="516.0" layoutY="306.0" prefHeight="159.0" prefWidth="228.0" style="-fx-border-radius: 10;">
             <children>
                 <Pane prefHeight="54.0" prefWidth="228.0" style="-fx-background-color: #8338ec;">
                     <children>

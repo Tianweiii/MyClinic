@@ -69,7 +69,7 @@ public class LoginController implements Initializable {
             String path = switch (role) {
                 case "admin" -> "/org/example/cmsclinic/adminMain.fxml";
                 case "doctor" -> "/doctorFXML/drMenu.fxml";
-                case "patient" -> "";
+                case "patient" -> "/patientFXML/patientHome.fxml";
                 default -> null;
             };
 

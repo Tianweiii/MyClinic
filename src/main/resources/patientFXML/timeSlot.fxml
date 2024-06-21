@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patientController.PatientTimeslotController">
+   <children>
+      <TableView fx:id="scheduleTable" layoutX="17.0" layoutY="329.0" onMouseClicked="#clickTableRow" prefHeight="323.0" prefWidth="670.0">
+         <columns>
+            <TableColumn fx:id="scheduleIdColumn" prefWidth="200.2684268951416" text="ScheduleID" />
+            <TableColumn fx:id="doctorIdColumn" prefWidth="249.2315673828125" text="DoctorID" />
+            <TableColumn fx:id="dateColumn" prefWidth="219.90069580078125" text="Date" />
+         </columns>
+      </TableView>
+      <Text layoutX="34.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Timeslots">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </Text>
+      <VBox layoutX="18.0" layoutY="79.0" prefHeight="236.0" prefWidth="213.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="70.0" prefWidth="213.0" style="-fx-background-color: #B5E48C;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Details">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="166.0" prefWidth="213.0" style="-fx-background-color: white; -fx-spacing: 5;">
+               <children>
+                  <Text fx:id="docIdField" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="docNameField" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Name">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="docGenderField" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="docSpecializationField" layoutX="10.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="501.0" layoutY="30.0" prefHeight="92.0" prefWidth="186.0" style="-fx-background-color: white;">
+         <children>
+            <Text fx:id="aptCountField" strokeType="OUTSIDE" strokeWidth="0.0" text="Count of appointments in schedule" textAlignment="CENTER" wrappingWidth="131.4605712890625" />
+         </children>
+      </VBox>
+      <TableView fx:id="timeslotTable" layoutX="249.0" layoutY="151.0" prefHeight="165.0" prefWidth="436.0">
+        <columns>
+          <TableColumn fx:id="C9" prefWidth="47.881805419921875" text="9AM" />
+          <TableColumn fx:id="C10" prefWidth="44.8818359375" text="10AM" />
+            <TableColumn fx:id="C11" prefWidth="43.346649169921875" text="11AM" />
+            <TableColumn fx:id="C12" prefWidth="51.640594482421875" text="12PM" />
+            <TableColumn fx:id="C13" prefWidth="46.087890625" text="1PM" />
+            <TableColumn fx:id="C14" prefWidth="47.57025146484375" text="2PM" />
+            <TableColumn fx:id="C15" prefWidth="46.9298095703125" text="3PM" />
+            <TableColumn fx:id="C16" prefWidth="50.4296875" text="4PM" />
+            <TableColumn fx:id="C17" prefWidth="59.7841796875" text="5PM" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

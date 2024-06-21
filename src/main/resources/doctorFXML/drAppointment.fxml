@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorAppointmentController">
+<AnchorPane prefHeight="700.0" prefWidth="840.0" styleClass="page" stylesheets="@../css/doctorCSS/drmain.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorAppointmentController">
    <children>
       <AnchorPane layoutX="11.2" layoutY="9.0" prefHeight="352.0" prefWidth="819.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -75,7 +75,7 @@
                   <Font name="Book Antiqua" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="CancelButton" layoutX="350.0" layoutY="254.0" mnemonicParsing="false" text="CANCEL" AnchorPane.leftAnchor="350.0" onAction="#cancelAppointment" AnchorPane.rightAnchor="350.79999999999995" />
+            <Button fx:id="CancelButton" layoutX="350.0" layoutY="254.0" mnemonicParsing="false" onAction="#cancelAppointment" styleClass="otherbutton" text="CANCEL" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.79999999999995" />
             <Label fx:id="showAID" layoutX="222.0" layoutY="21.0" prefHeight="18.0" prefWidth="126.0" text="AID" AnchorPane.leftAnchor="223.0" AnchorPane.topAnchor="21.0">
                <font>
                   <Font size="15.0" />

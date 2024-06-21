@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="840.0" styleClass="page" stylesheets="@../css/doctorCSS/drmain.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorHomeController">
+   <children>
+      <BorderPane prefHeight="700.0" prefWidth="840.0">
+         <top>
+            <AnchorPane prefHeight="0.0" prefWidth="840.0" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <AnchorPane prefHeight="215.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane prefHeight="177.0" prefWidth="840.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="box" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="590.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/doctorCSS/icons/appointment-today.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="18.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments Today">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="appToday" layoutX="103.0" layoutY="67.0" prefHeight="59.0" prefWidth="59.0" text="0" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Lucida Fax Regular" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="317.0" layoutY="11.0" prefHeight="193.0" prefWidth="205.0" styleClass="box" AnchorPane.bottomAnchor="11.399999999999977" AnchorPane.topAnchor="11.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/doctorCSS/icons/working-time.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="18.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Working Hours Today">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="workHr" layoutX="103.0" layoutY="67.0" prefHeight="59.0" prefWidth="59.0" text="0" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Lucida Fax Regular" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="609.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" styleClass="box" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="590.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="14.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../css/doctorCSS/icons/walk-in.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="18.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Walk-in Appointment">
+                                 <font>
+                                    <Font name="Calibri" size="20.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="walkinApp" layoutX="103.0" layoutY="67.0" prefHeight="59.0" prefWidth="59.0" text="0" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Lucida Fax Regular" size="48.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="177.0" prefHeight="233.0" prefWidth="840.0">
+                     <children>
+                        <AnchorPane layoutX="0.8" layoutY="-4.0" prefHeight="244.0" prefWidth="840.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-4.0">
+                           <children>
+                              <PieChart fx:id="appStatus" layoutX="169.0" prefHeight="244.0" prefWidth="502.0" styleClass="pie" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="410.0" prefHeight="291.0" prefWidth="840.0">
+                     <children>
+                        <AnchorPane layoutX="46.0" layoutY="22.0" prefHeight="238.0" prefWidth="748.0" styleClass="search">
+                           <children>
+                              <TableView fx:id="appList" layoutX="8.0" layoutY="52.0" prefHeight="172.0" prefWidth="731.0">
+                                <columns>
+                                  <TableColumn fx:id="AppID" prefWidth="99.0" text="AppointmentID" />
+                                  <TableColumn fx:id="PID" prefWidth="60.0" text="PatientID" />
+                                    <TableColumn fx:id="DID" prefWidth="60.0" text="DoctorID" />
+                                    <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                                    <TableColumn fx:id="timecolumn" text="Time" />
+                                    <TableColumn fx:id="durationcolumn" prefWidth="60.0" text="Duration" />
+                                    <TableColumn fx:id="statuscolumn" prefWidth="100.0" text="Status" />
+                                    <TableColumn fx:id="desccolumn" prefWidth="100.0" text="Desc." />
+                                    <TableColumn fx:id="SID" prefWidth="71.0" text="ScheduleID" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="SearchAppointment" layoutX="28.0" layoutY="14.0" promptText="Search" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

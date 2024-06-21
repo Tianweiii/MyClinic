@@ -38,53 +38,22 @@ public class DoctorMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        pressHomeButton();
     }
     @FXML
-    public void pressHomeButton(ActionEvent event) {
-//        try {
-//            Parent listRoot = FXMLLoader.load(getClass().getResource("/doctorFXML/drHome.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(listRoot);
-//            stage.setScene(scene);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        loadPage("");
+    public void pressHomeButton() {
+        loadPage("drHome.fxml");
     }
 
     public void pressScheduleButton() {
-//        try {
-//            Parent listRoot = FXMLLoader.load(getClass().getResource("/doctorFXML/drSchedule.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(listRoot);
-//            stage.setScene(scene);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         loadPage("drSchedule.fxml");
     }
 
-    public void pressAppButton(ActionEvent event) {
-//        try {
-//            Parent listRoot = FXMLLoader.load(getClass().getResource("/doctorFXML/drSchedule.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(listRoot);
-//            stage.setScene(scene);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+    public void pressAppButton() {
         loadPage("drAppointment.fxml");
     }
 
     public void pressMedRecButton() {
-//        try {
-//            Parent listRoot = FXMLLoader.load(getClass().getResource("/doctorFXML/drSchedule.fxml"));
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            Scene scene = new Scene(listRoot);
-//            stage.setScene(scene);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         loadPage("drMedicalRecordFORM.fxml");
     }
 

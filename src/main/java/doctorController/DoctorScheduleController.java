@@ -180,19 +180,6 @@ public class DoctorScheduleController implements Initializable {
     }
 
     private void autoGenerateSID() {
-        // Assuming RID is generated sequentially
-        // Assuming RID is generated sequentially based on the number of records in a file
-//        String filePath = "src/main/java/models/TextFiles/schedule";
-//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-//            int recordCount = 0;
-//            while (br.readLine() != null) {
-//                recordCount++;
-//            }
-//             Generate RID based on the count of existing records plus one
-//            SID.setText("SC" + (recordCount + 1));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         try {
             String newId = DataHistory.getNewId("schedule");
             SID.setText(newId);
@@ -250,6 +237,18 @@ public class DoctorScheduleController implements Initializable {
         // Reload data into TableView
         autoGenerateSID();
         ScTable.setItems(loadScheduleData());
+
+        // Clear the form fields
+        date.setValue(null);
+        nineAM.setSelected(false);
+        tenAM.setSelected(false);
+        elevenAM.setSelected(false);
+        twelvePM.setSelected(false);
+        onePM.setSelected(false);
+        twoPM.setSelected(false);
+        threePM.setSelected(false);
+        fourPM.setSelected(false);
+        fivePM.setSelected(false);
     }
 
     private ObservableList<Schedule> loadCurrentSchedule(){
@@ -267,7 +266,7 @@ public class DoctorScheduleController implements Initializable {
         }
         return schedule;
     }
-    private void loadCurrentDaySchedule() {
+    public int loadCurrentDaySchedule() {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String todayStr = today.format(formatter);
@@ -275,13 +274,24 @@ public class DoctorScheduleController implements Initializable {
         ObservableList<Schedule> allSchedules = loadScheduleData();
         ObservableList<Schedule> currentDaySchedules = FXCollections.observableArrayList();
 
+        int totalHoursWorked = 0;
+
         for (Schedule schedule : allSchedules) {
             if (schedule.getDate().equals(todayStr)) {
                 currentDaySchedules.add(schedule);
+
+                // Calculate the hours worked for the current schedule
+                String timeslots = schedule.getTimeslots();
+                String[] slots = timeslots.split("-");
+
+                for (String slot : slots) {
+                    if (!slot.equals("C")) {
+                        totalHoursWorked += 1; // Each valid slot counts as one hour
+                    }
+                }
             }
         }
-        CurrentScTable.setItems(currentDaySchedules);
+        return totalHoursWorked;
     }
-
 }
 

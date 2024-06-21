@@ -5,11 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Auth.Cookie;
 import models.Datas.Appointment;
@@ -20,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DoctorAppointmentController implements Initializable {
@@ -134,20 +131,20 @@ public class DoctorAppointmentController implements Initializable {
         });
     }
 
-    private ObservableList<Appointment> loadAppointment() {
-        //load data from text file
-        ObservableList<Appointment> records = FXCollections.observableArrayList();
-        FileIO reader = new FileIO("r", "appointment");
-        try {
-            for (String row : reader.readFile()) {
-                String[] arr = FileIO.splitString(row);
-                Appointment temp = new Appointment(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8]);
-                records.add(temp);
+    public static ObservableList<Appointment> loadAppointment() { // load data from textfile
+        ObservableList<Appointment> appointments = FXCollections.observableArrayList();
+        String filePath = "src/main/java/models/TextFiles/appointment";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] details = line.split(", ");
+                Appointment appointment = new Appointment(details[0], details[1], details[2], details[3], details[4], details[5], details[6], details[7], details[8]);
+                appointments.add(appointment);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        return records;
+        return appointments;
     }
 
     @FXML
@@ -172,23 +169,33 @@ public class DoctorAppointmentController implements Initializable {
 
     @FXML
     public void cancelAppointment() {
-        index = AppTable.getSelectionModel().getFocusedIndex();
+        int index = AppTable.getSelectionModel().getFocusedIndex();
         if (index <= -1) {
             return;
         }
 
         String appointmentID = AAID.getCellData(index).toString();
-//        Doctor doctor = new Doctor("DT4", "Alicia", "123", "25/8/2004", "female", "doctor", "brain"); // Assume you have a way to initialize or retrieve the current doctor object
 
-        try {
-            doctor.cancelAppointment(appointmentID);
-            // Update the status in the observable list
-            appointments.get(index).setStatus("cancelled");
+        // Create a confirmation alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancel Appointment");
+        alert.setHeaderText("Are you sure you want to cancel this appointment?");
+        alert.setContentText("Appointment ID: " + appointmentID);
 
-            // Refresh the table view
-            AppTable.refresh();
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Show the alert and wait for a response
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                doctor.cancelAppointment(appointmentID);
+                appointments.get(index).setStatus("cancelled");
+
+                // Refresh the table view
+                AppTable.refresh();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            return;
         }
     }
 }

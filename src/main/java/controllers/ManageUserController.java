@@ -560,14 +560,38 @@ public class ManageUserController implements Initializable {
             String role = adminRoleField.getText().toLowerCase();
             String salary = adminSalaryTextField.getText();
 
-            if (!Verification.verifyUsername(username, "admin")) {
+            try {
+                Integer.parseInt(salary);
+            } catch (NumberFormatException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Register user error");
+                alert.setContentText("Salary must be a number");
+                alert.showAndWait();
+                return;
+            }
+
+            if (!Verification.verifyFields(id, username, password, dob, gender, role, salary)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Update user error");
-                alert.setContentText("Username already exists. Please use another username");
+                alert.setContentText("At least 1 field must be changed");
+                alert.showAndWait();
+                return;
+            }
+            if (!Verification.verifyEmptyFields(username, password, dob, gender, salary)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("Fields cannot be blank");
                 alert.showAndWait();
                 return;
             }
             admin.updateUser(id, username, password, dob, gender, role, salary);
+
+            // update cookie
+            if (id.equals(admin.getID())) {
+                Admin temp = new Admin(id, username, password, dob, gender, role, salary);
+                Cookie.clearCookie();
+                Cookie.setCookie(temp);
+            }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successful update");
@@ -583,6 +607,20 @@ public class ManageUserController implements Initializable {
             String gender = doctorGenderComboBox.getValue();
             String role = doctorRoleField.getText().toLowerCase();
             String specialization = doctorSpecializationTextField.getText();
+            if (!Verification.verifyFields(id, username, password, dob, gender, role, specialization)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("At least 1 field must be changed");
+                alert.showAndWait();
+                return;
+            }
+            if (!Verification.verifyEmptyFields(username, password, dob, gender, specialization)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("Fields cannot be blank");
+                alert.showAndWait();
+                return;
+            }
             admin.updateUser(id, username, password, dob, gender, role, specialization);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -599,6 +637,20 @@ public class ManageUserController implements Initializable {
             String gender = patientGenderComboBox.getValue();
             String role = patientRoleField.getText().toLowerCase();
             String medicalCase = patientMedicalCaseTextField.getText();
+            if (!Verification.verifyFields(id, username, password, dob, gender, role, medicalCase)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("At least 1 field must be changed");
+                alert.showAndWait();
+                return;
+            }
+            if (!Verification.verifyEmptyFields(username, password, dob, gender, medicalCase)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Update user error");
+                alert.setContentText("Fields cannot be blank");
+                alert.showAndWait();
+                return;
+            }
             admin.updateUser(id, username, password, dob, gender, role, medicalCase);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

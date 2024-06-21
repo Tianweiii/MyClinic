@@ -1,0 +1,52 @@
+.gradient-background{
+    -fx-background-color: linear-gradient(from 25% 5% to 100% 100%,#AFE3FF,#FFFFFF);
+}
+
+.button{
+    -fx-background-color : #AFE3FF;
+
+}
+.button:pressed{
+    -fx-background-color: #7156DD;
+}
+.button:focused{
+    -fx-background-color: #4EB1E7;
+    -fx-border-color: #0B557F;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.Logoutbutton{
+    -fx-background-color: #ffff4f;
+    -fx-border-color: #0B557F;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+.Logoutbutton:focused{
+    -fx-background-color: #fa4d4d;
+}
+.page{
+    -fx-background-color: linear-gradient(from 100% 10% to 100% 100%, #fcfeff, #7de0ff);
+}
+.box{
+    -fx-background-color: #A0DEFF;
+    -fx-background-radius: 8px;
+}
+
+.pie{
+    -fx-background-color: #FFF9D0;
+    -fx-border-radius: 20px;
+}
+.search{
+    -fx-background-color: RGBA(255,255,255.0.2);
+    -fx-background-radius: 8;
+}
+
+.table-view .table-column{
+    -fx-alignment:CENTER;
+    }
+.otherbutton{
+     -fx-background-color: #FFF9D0;
+     -fx-border-color: #0B557F;
+     -fx-background-radius: 8px;
+     -fx-border-radius: 8px;
+}

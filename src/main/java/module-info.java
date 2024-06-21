@@ -2,7 +2,6 @@ module org.example.learnjavafx {
     requires javafx.controls;
     requires javafx.fxml;
 
-
     opens org.example.cmsclinic to javafx.fxml;
     exports org.example.cmsclinic;
     exports controllers;
@@ -12,4 +11,7 @@ module org.example.learnjavafx {
 
     opens doctorController to javafx.fxml;
     exports doctorController;
+
+    opens patientController to javafx.fxml;
+    exports patientController;
 }

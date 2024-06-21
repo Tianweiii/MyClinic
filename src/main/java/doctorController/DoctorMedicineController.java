@@ -180,16 +180,7 @@ public class DoctorMedicineController implements Initializable {
     }
 
     private void autoMedID() {
-//        String filePath = "src/main/java/models/TextFiles/medicine";
-//        int recordCount = 0;
-//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-//            while (br.readLine() != null) {
-//                recordCount++;
-//            }
-//            medIDinput.setText("MED" + (recordCount + 1));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
         try {
             String newId = DataHistory.getNewId("medicine");
             medIDinput.setText("MED" + newId);

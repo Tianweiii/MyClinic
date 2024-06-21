@@ -11,97 +11,117 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorMenuController">
     <children>
-          <VBox fx:id="MenuBar" prefHeight="700.0" prefWidth="160.0" style="-fx-background-color: #AFE3FF;">
-              <children>
-                  <ImageView fitHeight="62.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../css/doctorCSS/icons/Logo.png" />
-                      </image>
-                      <VBox.margin>
-                          <Insets left="51.0" top="10.0" />
-                      </VBox.margin>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MYCLINIC" textAlignment="CENTER" wrappingWidth="155.0">
-                      <font>
-                          <Font name="Georgia" size="24.0" />
-                      </font>
-                      <VBox.margin>
-                          <Insets bottom="20.0" />
-                      </VBox.margin>
-                  </Text>
-                  <Button fx:id="homebutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressHomeButton" prefHeight="50.0" prefWidth="160.0" text="Home">
-                      <padding>
-                          <Insets left="20.0" />
-                      </padding>
-                      <graphic>
-                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@../css/doctorCSS/icons/home.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <font>
-                          <Font size="13.0" />
-                      </font>
-                  </Button>
-                  <Button fx:id="schedulebutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressScheduleButton" prefHeight="50.0" prefWidth="160.0" text="Schedule">
-                      <padding>
-                          <Insets left="20.0" />
-                      </padding>
-                      <graphic>
-                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@../css/doctorCSS/icons/schedule.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <font>
-                          <Font size="13.0" />
-                      </font>
-                  </Button>
-                  <Button fx:id="appointmentbutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressAppButton" prefHeight="50.0" prefWidth="160.0" text="Appointment">
-                      <padding>
-                          <Insets left="20.0" />
-                      </padding>
-                      <graphic>
-                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@../css/doctorCSS/icons/appointment.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <font>
-                          <Font size="13.0" />
-                      </font>
-                  </Button>
-            <Button fx:id="recordListButton" mnemonicParsing="false" onAction="#pressRecordList" prefHeight="53.0" prefWidth="160.0" text="Record List" />
-                  <Button fx:id="medicalrecordbutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressMedRecButton" prefHeight="50.0" prefWidth="160.0" text="Record Form">
-                      <padding>
-                          <Insets left="20.0" />
-                      </padding>
-                      <graphic>
-                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@../css/doctorCSS/icons/medical-record.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                      <font>
-                          <Font size="13.0" />
-                      </font>
-                  </Button>
-            <Button fx:id="medicineButton" mnemonicParsing="false" onAction="#pressMedicineButton" prefHeight="52.0" prefWidth="160.0" text="Medicine" />
-            <Button fx:id="Logoutbutton" mnemonicParsing="false" onAction="#pressLogOutButton" prefHeight="47.0" prefWidth="160.0" text="Logout">
+        <VBox fx:id="MenuBar" prefHeight="700.0" prefWidth="160.0" style="-fx-background-color: #AFE3FF;" stylesheets="@../css/doctorCSS/drmain.css">
+            <children>
+                <ImageView fitHeight="62.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../css/doctorCSS/icons/Logo.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets left="51.0" top="10.0" />
+                    </VBox.margin>
+                </ImageView>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MYCLINIC" textAlignment="CENTER" wrappingWidth="155.0">
+                    <font>
+                        <Font name="Georgia" size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </Text>
+                <Button fx:id="homebutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressHomeButton" prefHeight="50.0" prefWidth="160.0" text="Home">
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/doctorCSS/icons/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="schedulebutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressScheduleButton" prefHeight="50.0" prefWidth="160.0" text="Schedule">
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/doctorCSS/icons/schedule.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="appointmentbutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressAppButton" prefHeight="50.0" prefWidth="160.0" text="Appointment">
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                    <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/doctorCSS/icons/appointment.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="recordListButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressRecordList" prefHeight="53.0" prefWidth="160.0" text="Record List">
                <graphic>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/doctorCSS/icons/medical-record.png" />
+                            </image>
+                        </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Button>
+                <Button fx:id="medicalrecordbutton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressMedRecButton" prefHeight="50.0" prefWidth="160.0" text="Record Form">
+                    <padding>
+                        <Insets left="20.0" />
+                    </padding>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../css/doctorCSS/icons/logout.png" />
+                        <Image url="@../css/doctorCSS/icons/addrec.png" />
                      </image>
                   </ImageView>
                </graphic>
-            </Button>
-              </children>
-          </VBox>
-      <AnchorPane fx:id="contentArea" layoutX="160.0" prefHeight="701.0" prefWidth="841.0" />
+                </Button>
+                <Button fx:id="medicineButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#pressMedicineButton" prefHeight="52.0" prefWidth="160.0" text="Medicine">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../css/doctorCSS/icons/medicine.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="20.0" />
+               </padding></Button>
+                <Button fx:id="Logoutbutton" mnemonicParsing="false" onAction="#pressLogOutButton" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #FFF9D0;" text="Logout">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../css/doctorCSS/icons/logout.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </VBox>
+        <AnchorPane fx:id="contentArea" layoutX="160.0" prefHeight="701.0" prefWidth="841.0" stylesheets="@../css/doctorCSS/drmain.css" />
     </children>
 </AnchorPane>

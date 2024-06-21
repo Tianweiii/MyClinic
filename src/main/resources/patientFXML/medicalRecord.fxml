@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="658.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="patientController.PatientMedicalRecordController">
+   <children>
+      <TableView fx:id="medicalRecordTable" layoutX="8.0" layoutY="374.0" onMouseClicked="#clickTableRow" prefHeight="277.0" prefWidth="687.0">
+        <columns>
+          <TableColumn fx:id="recordIdColumn" prefWidth="75.0" text="Record ID" />
+          <TableColumn fx:id="patientIdColumn" prefWidth="75.0" text="Patient ID" />
+            <TableColumn fx:id="appointmentIdColumn" prefWidth="167.19166564941406" text="Appointment ID" />
+            <TableColumn fx:id="diagnosisColumn" prefWidth="174.308349609375" text="Diagnosis" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="195.305908203125" text="Description" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="8.0" layoutY="186.0" prefHeight="178.0" prefWidth="685.0" style="-fx-border-color: black;">
+         <children>
+            <Text layoutX="16.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment Detail">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" layoutX="69.0" layoutY="47.0" prefHeight="36.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Appointment ID" />
+                  <TextField fx:id="aptIdField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="117.0" layoutY="83.0" prefHeight="36.0" prefWidth="171.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                  <TextField fx:id="dateField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="117.0" layoutY="119.0" prefHeight="36.0" prefWidth="171.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time" />
+                  <TextField fx:id="timeField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="369.0" layoutY="47.0" prefHeight="36.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
+                  <TextField fx:id="durationField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="376.0" layoutY="83.0" prefHeight="36.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+                  <TextField fx:id="statusField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="363.0" layoutY="119.0" prefHeight="36.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                  <TextField fx:id="appointmentDescriptionField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="8.0" layoutY="10.0" prefHeight="170.0" prefWidth="684.0" style="-fx-border-color: black;">
+         <children>
+            <Text layoutX="16.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Record Detail">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Text>
+            <VBox layoutX="535.0" layoutY="13.0" prefHeight="148.0" prefWidth="126.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="44.0" prefWidth="126.0" style="-fx-background-color: #99D98C;">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medication">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="13.0" />
+                           </font></Text>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="medicationVBox" alignment="CENTER" prefHeight="112.0" prefWidth="126.0" style="-fx-background-color: white; -fx-spacing: 1;" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="21.0" layoutY="46.0" prefHeight="36.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Record ID" />
+                  <TextField fx:id="recordIdField" disable="true" prefHeight="26.0" prefWidth="103.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="22.0" layoutY="86.0" prefHeight="36.0" prefWidth="249.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Diagnosis" />
+                  <TextField fx:id="diagnosisField" disable="true" prefHeight="26.0" prefWidth="143.0" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="265.0" layoutY="44.0" prefHeight="98.0" prefWidth="207.0" style="-fx-spacing: 5;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Text>
+                  <TextArea fx:id="reportDescriptionField" disable="true" prefHeight="107.0" prefWidth="119.0" wrapText="true" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="700.0" maxWidth="840.0" prefHeight="700.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorMedicalRecordFormController">
+<AnchorPane maxHeight="700.0" maxWidth="840.0" prefHeight="700.0" prefWidth="840.0" styleClass="page" stylesheets="@../css/doctorCSS/drmain.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctorController.DoctorMedicalRecordFormController">
     <children>
         <AnchorPane layoutX="10.0" layoutY="49.0" prefHeight="614.0" prefWidth="820.0">
             <children>
@@ -41,7 +41,7 @@
                         <Font name="Book Antiqua" size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="AddButton" layoutX="364.0" layoutY="534.0" mnemonicParsing="false" onAction="#addNewMedicalRecord" text="ADD" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="336.79999999999995" />
+                <Button fx:id="AddButton" layoutX="364.0" layoutY="534.0" mnemonicParsing="false" onAction="#addNewMedicalRecord" styleClass="otherbutton" text="ADD" AnchorPane.leftAnchor="364.0" AnchorPane.rightAnchor="336.79999999999995" />
                 <Label fx:id="RID" layoutX="188.0" layoutY="21.0" prefHeight="18.0" prefWidth="126.0" text="MR" AnchorPane.leftAnchor="188.0" AnchorPane.topAnchor="21.0">
                     <font>
                         <Font size="15.0" />
