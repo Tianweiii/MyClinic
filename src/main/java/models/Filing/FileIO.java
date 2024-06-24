@@ -15,21 +15,18 @@ public class FileIO {
             try {
                 appender = new BufferedWriter(new FileWriter("src/main/java/models/TextFiles/" + filename, true));
             } catch (IOException e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         } else if (type.equalsIgnoreCase("r")) {
             try {
                 reader = new BufferedReader(new FileReader("src/main/java/models/TextFiles/" + filename));
             } catch (IOException e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         } else if (type.equalsIgnoreCase("w")) {
             try {
                 writer = new BufferedWriter(new FileWriter("src/main/java/models/TextFiles/" + filename));
             } catch (IOException e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
@@ -89,7 +86,12 @@ public class FileIO {
 
     public static String updateArrayData(String replaceChar, String data, String time, String duration) {
         String[] timeslots = splitArray(data);
-        int hour = Integer.parseInt(time.substring(0, 2));
+        int hour;
+        if (time.length() < 4) {
+            hour = Integer.parseInt(time.substring(0, 1));
+        } else {
+            hour = Integer.parseInt(time.substring(0, 2));
+        }
         for (int i = hour; i < (Integer.parseInt(duration) + hour); i++) {
             for (int j = 0; j < timeslots.length; j++) {
                 if (timeslots[j].equals(String.valueOf(i))) {
@@ -98,17 +100,5 @@ public class FileIO {
             }
         }
         return Arrays.toString(timeslots).replace(", ", "-");
-    }
-
-    public static String arrayToString(String[] data) {
-        String result = "";
-        for (int i = 0; i < data.length; i++) {
-            if (i == data.length - 1) {
-                result += data[i];
-            } else {
-                result += data[i] + ", ";
-            }
-        }
-        return result;
     }
 }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
@@ -30,7 +31,8 @@ import static doctorController.DoctorAppointmentController.loadAppointment;
 public class DoctorHomeController implements Initializable {
     Doctor doctor = Cookie.identityDoctor;
     String docId = doctor.getID();
-    DoctorScheduleController scheduleController = new DoctorScheduleController(); // Instantiate DoctorScheduleController
+    private DoctorScheduleController scheduleController;
+
     @FXML
     private TableColumn<Appointment, String> AppID;
 
@@ -76,11 +78,21 @@ public class DoctorHomeController implements Initializable {
     @FXML
     private Label workHr;
 
-    @FXML
-    private LineChart<Schedule, String> workinghr;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Load DoctorScheduleController properly
+        try {
+            URL fxmlLocation = getClass().getResource("/doctorFXML/drSchedule.fxml");
+            if (fxmlLocation == null) {
+                throw new IOException("FXML file not found");
+            }
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            loader.load();
+            scheduleController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // Initialize table columns
         AppID.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
         PID.setCellValueFactory(new PropertyValueFactory<>("patientID"));
@@ -97,7 +109,6 @@ public class DoctorHomeController implements Initializable {
         calwalkinToday();
         updateWorkHours();
         piechart();
-
     }
 
     public void showApp() {
@@ -106,13 +117,11 @@ public class DoctorHomeController implements Initializable {
 
         SearchAppointment.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(record -> {
-                // If filter text is empty, display all appointments
                 if (newValue == null || newValue.isBlank()) {
                     return true;
                 }
                 String searchKeyword = newValue.toLowerCase();
-
-                if (record.getAppointmentID().toLowerCase().contains(searchKeyword) ||
+                return record.getAppointmentID().toLowerCase().contains(searchKeyword) ||
                         record.getPatientID().toLowerCase().contains(searchKeyword) ||
                         record.getDoctorID().toLowerCase().contains(searchKeyword) ||
                         record.getDate().toLowerCase().contains(searchKeyword) ||
@@ -120,10 +129,7 @@ public class DoctorHomeController implements Initializable {
                         record.getDuration().toLowerCase().contains(searchKeyword) ||
                         record.getStatus().toLowerCase().contains(searchKeyword) ||
                         record.getDescription().toLowerCase().contains(searchKeyword) ||
-                        record.getScheduleID().toLowerCase().contains(searchKeyword)) {
-                    return true;
-                }
-                return false;
+                        record.getScheduleID().toLowerCase().contains(searchKeyword);
             });
         });
         appList.setItems(filteredData);
@@ -167,14 +173,15 @@ public class DoctorHomeController implements Initializable {
         int totalHoursWorked = scheduleController.loadCurrentDaySchedule();
         workHr.setText(String.valueOf(totalHoursWorked));
     }
+
     public void piechart(){
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                        new PieChart.Data("Complete",countCompleteStatus()),
-                        new PieChart.Data("Missed",countMissedStatus()),
-                        new PieChart.Data("Pending",countPendingStatus()),
-                        new PieChart.Data("Cancelled",countCancelledStatus()),
-                        new PieChart.Data("Walk-in",countWalkinStatus()));
+                        new PieChart.Data("Complete", countCompleteStatus()),
+                        new PieChart.Data("Missed", countMissedStatus()),
+                        new PieChart.Data("Pending", countPendingStatus()),
+                        new PieChart.Data("Cancelled", countCancelledStatus()),
+                        new PieChart.Data("Walk-in", countWalkinStatus()));
 
         pieChartData.forEach(data ->
                 data.nameProperty().bind(
@@ -183,8 +190,8 @@ public class DoctorHomeController implements Initializable {
                         )
                 ));
         appStatus.setData(pieChartData);
-
     }
+
     public int countCompleteStatus() {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int completeStatus = 0;
@@ -192,7 +199,7 @@ public class DoctorHomeController implements Initializable {
             FileIO reader = new FileIO("r", "appointment");
             for (String row : reader.readFile()) {
                 String[] arr = FileIO.splitString(row);
-                if (arr[6].equals("complete") && arr[2].equals(docId)) {
+                if (arr[6].equals("completed") && arr[2].equals(docId)) {
                     completeStatus++;
                 }
             }
@@ -218,6 +225,7 @@ public class DoctorHomeController implements Initializable {
         }
         return missedStatus;
     }
+
     public int countPendingStatus() {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int pendingStatus = 0;
@@ -234,6 +242,7 @@ public class DoctorHomeController implements Initializable {
         }
         return pendingStatus;
     }
+
     public int countCancelledStatus() {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int cancelledStatus = 0;
@@ -250,6 +259,7 @@ public class DoctorHomeController implements Initializable {
         }
         return cancelledStatus;
     }
+
     public int countWalkinStatus() {
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int walkinStatus = 0;

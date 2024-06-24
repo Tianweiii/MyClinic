@@ -134,6 +134,15 @@ public class DoctorMedicineController implements Initializable {
         String category = medCatinput.getValue();
         String usage = medUseinput.getText();
 
+
+        if (name == null || name.isBlank() || category == null || usage == null || usage.isBlank()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Form is INCOMPLETE");
+            alert.setContentText("Please fill in ALL columns");
+            alert.showAndWait();
+            return;
+        }
         String medID = medIDinput.getText();
         medIDinput.setText(medID); // Update medIDinput label with new ID
 

@@ -281,5 +281,6 @@ public class TrackAppointmentController implements Initializable {
         resetDoctorData();
         resetAppointmentData();
         dailyAppointmentTable.getSelectionModel().clearSelection();
+        editButton.setDisable(true);
     }
 }

@@ -117,8 +117,6 @@ public class DoctorScheduleController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        this.doctor = Cookie.identityDoctor;
-
         DID.setText(doctor.getID());
 
         SIDC.setCellValueFactory(new PropertyValueFactory<>("scheduleID"));
@@ -134,15 +132,14 @@ public class DoctorScheduleController implements Initializable {
         threePMcolumn.setCellValueFactory(new PropertyValueFactory<>("threePM"));
         fourPMcolumn.setCellValueFactory(new PropertyValueFactory<>("fourPM"));
         fivePMcolumn.setCellValueFactory(new PropertyValueFactory<>("fivePM"));
+
         schedules = loadScheduleData();
         FilteredList<Schedule> filteredData = new FilteredList<>(schedules, b -> true);
 
-        //Set the filtered data to the table
         ScTable.setItems(filteredData);
         autoGenerateSID();
         loadCurrentDaySchedule();
 
-        //Add listener for search field
         searchSchedule.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(schedule -> {
                 if (newValue == null || newValue.isBlank()) {
@@ -192,21 +189,37 @@ public class DoctorScheduleController implements Initializable {
     @FXML
     private void addNewSchedule() throws IOException {
         if (this.doctor == null) {
-            System.err.println("Cannot add medical record. Doctor is not logged in or not properly initialized.");
+            System.err.println("Cannot add schedule. Doctor is not logged in or not properly initialized.");
             return;
         }
 
         // Get schedule data
         String scheduleID = "SC" + SID.getText();
         String doctorID = DID.getText();
-        LocalDate selectedDate = null;
-        if (date.getValue() != null) {
-            selectedDate = date.getValue();
-        } else {
-            System.out.println("Please select a date");
+        LocalDate selectedDate = date.getValue();
+
+        if (selectedDate == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Date not selected");
+            alert.setContentText("Please select a date.");
+            alert.showAndWait();
             return;
         }
+
         String formattedDate = selectedDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        // Check for existing schedule with same date and doctor ID
+        for (Schedule schedule : schedules) {
+            if (schedule.getDoctorID().equals(doctorID) && schedule.getDate().equals(formattedDate)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Schedule Already Exist");
+                alert.setContentText("Schedule already exist for this date please choose another date.");
+                alert.showAndWait();
+                return;
+            }
+        }
 
         String timeSlots = "9-10-11-12-13-14-15-16-17";
         String[] slots = timeSlots.split("-");
@@ -236,7 +249,8 @@ public class DoctorScheduleController implements Initializable {
         doctor.addSchedule(scheduleID, doctorID, formattedDate, finalTime);
         // Reload data into TableView
         autoGenerateSID();
-        ScTable.setItems(loadScheduleData());
+        schedules = loadScheduleData(); // Reload schedules from file
+        ScTable.setItems(schedules);
 
         // Clear the form fields
         date.setValue(null);
@@ -250,6 +264,7 @@ public class DoctorScheduleController implements Initializable {
         fourPM.setSelected(false);
         fivePM.setSelected(false);
     }
+
 
     private ObservableList<Schedule> loadCurrentSchedule(){
         ObservableList<Schedule> schedule = FXCollections.observableArrayList();
@@ -277,13 +292,12 @@ public class DoctorScheduleController implements Initializable {
         int totalHoursWorked = 0;
 
         for (Schedule schedule : allSchedules) {
-            if (schedule.getDate().equals(todayStr)) {
+            // Check if the schedule date is today and the doctor ID matches the logged-in doctor
+            if (schedule.getDate().equals(todayStr) && schedule.getDoctorID().equals(doctor.getID())) {
                 currentDaySchedules.add(schedule);
-
                 // Calculate the hours worked for the current schedule
                 String timeslots = schedule.getTimeslots();
                 String[] slots = timeslots.split("-");
-
                 for (String slot : slots) {
                     if (!slot.equals("C")) {
                         totalHoursWorked += 1; // Each valid slot counts as one hour
@@ -291,6 +305,7 @@ public class DoctorScheduleController implements Initializable {
                 }
             }
         }
+        CurrentScTable.setItems(currentDaySchedules);
         return totalHoursWorked;
     }
 }

@@ -1,7 +1,7 @@
-admin, 10
+admin, 11
 doctor, 3
 patient, 3
-appointment, 12
+appointment, 17
 medicalRecord, 2
 payment, 19
 schedule, 108

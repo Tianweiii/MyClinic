@@ -308,7 +308,7 @@ public class PatientAppointmentController implements Initializable {
             date = dateComboBox.getValue();
         }
         if (timeComboBox.getValue() != null) {
-            time = timeComboBox.getValue();
+            time = timeComboBox.getValue() + "00";
         }
         if (durationComboBox.getValue() != null) {
             duration = durationComboBox.getValue();

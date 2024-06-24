@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
@@ -15,10 +16,6 @@ import models.Datas.Appointment;
 import models.Datas.DataHistory;
 import models.Datas.Medicine;
 import models.Users.Doctor;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 
 import java.io.*;
 import java.net.URL;
@@ -181,10 +178,30 @@ public class DoctorMedicalRecordFormController implements Initializable {
             System.err.println("Cannot add medical record. Doctor is not logged in or not properly initialized.");
             return;
         }
+
         String recordID = RID.getText();
         String patientID = PID.getText();
         String appointmentID = AID.getValue();
         String diagnosis = Diagnosis.getText();
+
+        if (appointmentID == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("MUST SELECTED AN APPOINTMENT");
+            alert.setContentText("Please select an appointment.");
+            alert.showAndWait();
+            return;
+        }
+
+        if (diagnosis == null || diagnosis.trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Diagnosis is required");
+            alert.setContentText("Please enter a diagnosis.");
+            alert.showAndWait();
+            return;
+        }
+
         List<String> medications = new ArrayList<>();
         medications.add(Med1.getValue());
         medications.add(Med2.getValue());
@@ -193,25 +210,33 @@ public class DoctorMedicalRecordFormController implements Initializable {
         medications.add(Med5.getValue());
         medications.add(Med6.getValue());
         String medicationsStr = String.join("-", medications);
-        String description = Desc.getText() + "\n";
+
+        String description = Desc.getText();
+        if (description == null || description.trim().isEmpty()) {
+            description = "null";
+        } else {
+            description += "\n";
+        }
 
         // Call the method from the Doctor class
         doctor.addMedicalRecord(recordID, patientID, appointmentID, diagnosis, medicationsStr, description);
-        System.out.println("Added record successfully");
+
+        // Show confirmation alert
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("ADD Record");
+        alert.setHeaderText("Added record successfully");
+        alert.setContentText("RecordID: " + recordID);
+        alert.showAndWait();
+
         autoGenerateRID();
-
-//        switchToList(new ActionEvent());
-    }
-
-    @FXML
-    private void switchToList(ActionEvent event) {
-        try {
-            Parent listRoot = FXMLLoader.load(getClass().getResource("/doctorFXML/drMedicalRecordLIST.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(listRoot);
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        AID.setValue(null);
+        Diagnosis.clear();
+        Med1.setValue(null);
+        Med2.setValue(null);
+        Med3.setValue(null);
+        Med4.setValue(null);
+        Med5.setValue(null);
+        Med6.setValue(null);
+        Desc.clear();
     }
 }

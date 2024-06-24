@@ -132,7 +132,7 @@ public class Payment {
         int mar = 0;
         int apr = 0;
         int may = 0;
-        List<Map<String, Integer>> monthlyRevenue = new ArrayList<>();
+//        List<Map<String, Integer>> monthlyRevenue = new ArrayList<>();
         FileIO reader = new FileIO("r", "payment");
         for (String row : reader.readFile()) {
             String[] rowData = row.split(",\\s");

@@ -178,7 +178,6 @@ public class Schedule {
             String[] arr = FileIO.splitString(row);
             if (arr[0].equals(scheduleID)) {
                 arr[3] = FileIO.updateArrayData(appointmentID, arr[3], time, duration);
-                System.out.println(row);
                 row = MessageFormat.format("{0}, {1}, {2}, {3}", arr[0], arr[1], arr[2], arr[3]);
             }
             data.add(row);
