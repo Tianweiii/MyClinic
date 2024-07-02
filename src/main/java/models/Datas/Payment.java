@@ -132,6 +132,13 @@ public class Payment {
         int mar = 0;
         int apr = 0;
         int may = 0;
+        int jun = 0;
+        int jul = 0;
+        int aug = 0;
+        int sep = 0;
+        int oct = 0;
+        int nov = 0;
+        int dec = 0;
 //        List<Map<String, Integer>> monthlyRevenue = new ArrayList<>();
         FileIO reader = new FileIO("r", "payment");
         for (String row : reader.readFile()) {
@@ -143,6 +150,13 @@ public class Payment {
                 case "03" -> mar += amount;
                 case "04" -> apr += amount;
                 case "05" -> may += amount;
+                case "06" -> jun += amount;
+                case "07" -> jul += amount;
+                case "08" -> aug += amount;
+                case "09" -> sep += amount;
+                case "10" -> oct += amount;
+                case "11" -> nov += amount;
+                case "12" -> dec += amount;
             }
         }
         data.put("Jan", jan);
@@ -150,6 +164,13 @@ public class Payment {
         data.put("Mar", mar);
         data.put("Apr", apr);
         data.put("May", may);
+        data.put("Jun", jun);
+        data.put("Jul", jul);
+        data.put("Aug", aug);
+        data.put("Sept", sep);
+        data.put("Oct", oct);
+        data.put("Nov", nov);
+        data.put("Dec", dec);
         return data;
     }
 }

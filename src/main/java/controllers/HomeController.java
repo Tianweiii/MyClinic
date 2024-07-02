@@ -361,6 +361,13 @@ public class HomeController implements Initializable {
         series.getData().add(new XYChart.Data<>("Mar", data.get("Mar")));
         series.getData().add(new XYChart.Data<>("Apr", data.get("Apr")));
         series.getData().add(new XYChart.Data<>("May", data.get("May")));
+        series.getData().add(new XYChart.Data<>("Jun", data.get("Jun")));
+        series.getData().add(new XYChart.Data<>("Jul", data.get("Jul")));
+        series.getData().add(new XYChart.Data<>("Aug", data.get("Aug")));
+        series.getData().add(new XYChart.Data<>("Sep", data.get("Sept")));
+        series.getData().add(new XYChart.Data<>("Oct", data.get("Oct")));
+        series.getData().add(new XYChart.Data<>("Nov", data.get("Nov")));
+        series.getData().add(new XYChart.Data<>("Dec", data.get("Dec")));
 
         monthlyRevenueChart.getData().add(series);
     }
