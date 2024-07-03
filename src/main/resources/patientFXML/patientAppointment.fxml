@@ -52,10 +52,10 @@
                         <Text fx:id="patientIdTextField" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="17.0" layoutY="94.0" prefHeight="29.0" prefWidth="159.0" style="-fx-spacing: 5;">
+                  <HBox alignment="CENTER" layoutX="17.0" layoutY="94.0" prefHeight="29.0" prefWidth="200.0" style="-fx-spacing: 5;">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID:" />
-                        <ComboBox fx:id="doctorIdComboBox" prefHeight="26.0" prefWidth="71.0" />
+                        <ComboBox fx:id="doctorIdComboBox" prefHeight="26.0" prefWidth="110.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" layoutX="22.0" layoutY="133.0" prefHeight="29.0" prefWidth="200.0" style="-fx-spacing: 5;">
@@ -109,8 +109,8 @@
             <AnchorPane prefHeight="137.0" prefWidth="157.0" style="-fx-background-color: white;">
                <children>
                   <Text fx:id="doctorIdTextField" layoutX="54.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor ID" />
-                  <Text fx:id="doctorNameTextField" layoutX="42.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Name" />
-                  <Text fx:id="doctorSpecializationTextField" layoutX="41.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization" />
+                  <Text fx:id="doctorNameTextField" layoutX="48.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Name" />
+                  <Text fx:id="doctorSpecializationTextField" layoutX="46.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specialization" />
                </children>
             </AnchorPane>
          </children>
