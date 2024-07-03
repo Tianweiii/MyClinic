@@ -148,7 +148,7 @@ public class Appointment {
         FileIO reader = new FileIO("r", "appointment");
         for (String row : reader.readFile()) {
             String[] arr = FileIO.splitString(row);
-            if (arr[3].equals(currentDate) && !arr[6].equals("completed") && !arr[6].equals("cancelled")) {
+            if (arr[3].equals(currentDate) && arr[6].equals("pending")) {
                 count++;
             }
         }
@@ -164,7 +164,7 @@ public class Appointment {
         FileIO reader = new FileIO("r", "appointment");
         for (String row : reader.readFile()) {
             String[] arr = FileIO.splitString(row);
-            if (arr[3].equals(currentDate) && arr[6].equals("completed")) {
+            if (arr[3].equals(currentDate) && !arr[6].equals("pending")) {
                 count++;
             }
         }

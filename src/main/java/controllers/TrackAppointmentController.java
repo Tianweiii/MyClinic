@@ -187,8 +187,8 @@ public class TrackAppointmentController implements Initializable {
     @FXML
     private VBox chartVBox;
     public void setPieChartData() throws IOException {
-        double toDo = Appointment.getToDoAppointment(); // returns 1.0
-        double completed = Appointment.getCompletedDailyAppointment(); // returns 0
+        double toDo = Appointment.getToDoAppointment();
+        double completed = Appointment.getCompletedDailyAppointment();
         PieChart appointmentPieChart = new PieChart();
         appointmentPieChart.setTitle("Appointment PieChart");
 
