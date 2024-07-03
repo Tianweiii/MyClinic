@@ -148,6 +148,12 @@ public class Admin extends User {
 
         Payment data = new Payment(id, PatientID, AppointmentID, amount, method, currentDate);
         data.addToPaymentFile();
+
+        try {
+            DataHistory.updateDataHistoryCount("payment");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void managePayment(String paymentId, String patientId, String amount) throws IOException {

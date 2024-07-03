@@ -132,7 +132,7 @@ public class Schedule {
                 }
             }
         }
-        System.out.println(availableTimes);
+//        System.out.println(availableTimes);
         return availableTimes;
     }
 

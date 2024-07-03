@@ -35,7 +35,6 @@ public class PaymentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(admin.getUsername());
         paymentIdColumn.setCellValueFactory(new PropertyValueFactory<>("paymentID"));
         paymentPatientIdColumn.setCellValueFactory(new PropertyValueFactory<>("patientID"));
         paymentAppointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentID"));
