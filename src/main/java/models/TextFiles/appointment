@@ -17,3 +17,5 @@ APT16, PT3, DT2, 24/06/2024, 1100, 2h, pending, checkup, SC86
 APT17, PT1, DT3, 24/06/2024, 900, 3h, walk-in, xray, SC87
 APT18, PT1, DT1, 04/07/2024, 1100, 3h, pending, checkup, SC109
 APT19, PT1, DT1, 03/07/2024, 1000, 2h, completed, checkup, SC110
+APT20, PT4, DT1, 03/07/2024, 1300, 1h, walk-in, checkup, SC110
+APT21, PT4, DT3, 03/07/2024, 1100, 3h, missed, checkup, SC111
