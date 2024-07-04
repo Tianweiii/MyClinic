@@ -1,7 +1,7 @@
 APT1, PT1, DT1, 15/05/2024, 1000, 1h, attended, checkup, SC1
 APT2, PT2, DT1, 20/05/2024, 1200, 1h, pending, surgery, SC16
 APT3, PT1, DT2, 19/05/2024, 1200, 2h, pending, checkup, SC14
-APT4, PT1, DT3, 24/05/2024, 1400, 1h, pending, checkup, SC30
+APT4, PT1, DT3, 24/05/2024, 1400, 1h, cancelled, checkup, SC30
 APT5, PT1, DT1, 18/05/2024, 1000, 2h, walk-in, checkup, SC10
 APT6, PT2, DT2, 19/05/2024, 1100, 1h, walk-in, checkup, SC14
 APT7, PT3, DT3, 21/05/2024, 1200, 2h, walk-in, checkup, SC21
@@ -15,7 +15,8 @@ APT14, PT1, DT2, 23/06/2024, 1400, 3h, completed, checkup, SC83
 APT15, PT3, DT3, 23/06/2024, 1200, 2h, pending, checkup, SC84
 APT16, PT3, DT2, 24/06/2024, 1100, 2h, pending, checkup, SC86
 APT17, PT1, DT3, 24/06/2024, 900, 3h, walk-in, xray, SC87
-APT18, PT1, DT1, 04/07/2024, 1100, 3h, pending, checkup, SC109
+APT18, PT1, DT1, 04/07/2024, 1100, 3h, completed, checkup, SC109
 APT19, PT1, DT1, 03/07/2024, 1000, 2h, completed, checkup, SC110
 APT20, PT4, DT1, 03/07/2024, 1300, 1h, walk-in, checkup, SC110
 APT21, PT4, DT3, 03/07/2024, 1100, 3h, missed, checkup, SC111
+APT22, PT5, DT1, 04/07/2024, 1700, 1h, walk-in, checkup, SC109
